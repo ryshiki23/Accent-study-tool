@@ -1,8 +1,12 @@
+import { capCount } from '../srs'
+
 interface Props {
   learnCount: number
   masteredCount: number
   learningCount: number
+  reviewCount: number
   onLearn: () => void
+  onReview: () => void
 }
 
 function todayLabel() {
@@ -11,7 +15,7 @@ function todayLabel() {
   return `${d.getMonth() + 1}月${d.getDate()}日（${w}）`
 }
 
-export default function Home({ learnCount, masteredCount, learningCount, onLearn }: Props) {
+export default function Home({ learnCount, reviewCount, masteredCount, learningCount, onLearn, onReview }: Props) {
   return (
     <div className="flex flex-1 flex-col pt-8">
       <p className="text-sm font-medium text-slate-500">{todayLabel()}</p>
@@ -30,11 +34,24 @@ export default function Home({ learnCount, masteredCount, learningCount, onLearn
           </p>
         </button>
 
-        <div className="rounded-3xl bg-white/50 p-6 text-left text-slate-400">
-          <p className="text-sm font-semibold tracking-wide">Review</p>
-          <p className="mt-1 text-xl font-bold">復習</p>
-          <p className="mt-3 text-sm">準備中</p>
-        </div>
+        {reviewCount > 0 ? (
+          <button
+            onClick={onReview}
+            className="rounded-3xl bg-white/90 p-6 text-left shadow-lg shadow-rose-100 transition active:scale-[0.98]"
+          >
+            <p className="text-sm font-semibold tracking-wide text-rose-500">Review</p>
+            <p className="mt-1 text-xl font-bold">復習</p>
+            <p className="mt-3 text-sm text-slate-500">
+              今日 <span className="text-2xl font-bold text-slate-800">{capCount(reviewCount)}</span> 語
+            </p>
+          </button>
+        ) : (
+          <div className="rounded-3xl bg-white/50 p-6 text-left text-slate-400">
+            <p className="text-sm font-semibold tracking-wide">Review</p>
+            <p className="mt-1 text-xl font-bold">復習</p>
+            <p className="mt-3 text-sm">今日の復習は完了</p>
+          </div>
+        )}
       </div>
 
       <div className="mt-6 flex justify-around rounded-2xl bg-white/60 py-3 text-center text-sm">

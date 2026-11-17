@@ -2,16 +2,19 @@ import { useEffect, useMemo, useState } from 'react'
 import type { AnswerRecord, Item, ProgressRow } from './types'
 import { dbConfigured, getState, onUnsavedChange, saveAnswer } from './db'
 import { readUserId } from './userId'
-import { addDays, studyToday } from './date'
+import { studyToday } from './date'
+import { dueRows, learnOutcome, reviewOutcome } from './srs'
 import Home from './screens/Home'
 import Quiz from './screens/Quiz'
 import Result from './screens/Result'
 
 const SET_SIZE = 10
 
+type Mode = 'learn' | 'review'
+
 type Screen =
   | { name: 'home' }
-  | { name: 'quiz'; items: Item[] }
+  | { name: 'quiz'; mode: Mode; items: Item[] }
   | { name: 'result'; records: AnswerRecord[] }
 
 type Load =
@@ -59,6 +62,19 @@ export default function App() {
       .sort((a, b) => b.zipf - a.zipf)
   }, [load, progress])
 
+  // 「今日」は描画のたびに計算（朝 4 時をまたいでも正しくなるように）
+  const today = studyToday()
+
+  // Review の出題候補：期限が来た learning、古い順（SPEC 6.3）
+  const itemById = useMemo(
+    () => (load.state === 'ready' ? new Map(load.items.map((it) => [it.id, it])) : new Map<string, Item>()),
+    [load],
+  )
+  const reviewPool = useMemo(
+    () => dueRows(progress.values(), today).map((r) => itemById.get(r.item_id)).filter((it): it is Item => !!it),
+    [progress, today, itemById],
+  )
+
   const counts = useMemo(() => {
     let mastered = 0
     let learning = 0
@@ -94,19 +110,20 @@ export default function App() {
     return <Shell><p className="mt-24 text-center text-slate-500">読み込み中…</p></Shell>
   }
 
-  function startLearn() {
-    const set = learnPool.slice(0, SET_SIZE)
-    if (set.length > 0) setScreen({ name: 'quiz', items: set })
+  function start(mode: Mode) {
+    const set = (mode === 'learn' ? learnPool : reviewPool).slice(0, SET_SIZE)
+    if (set.length > 0) setScreen({ name: 'quiz', mode, items: set })
   }
 
-  // Learn の採点（SPEC 6.2）：正解 → mastered、不正解 → learning / stage 0 / 明日
-  function handleAnswer(item: Item, correct: boolean) {
+  // 採点：Learn は SPEC 6.2、Review は SPEC 6.3（間隔は src/srs.ts）
+  function handleAnswer(mode: Mode, item: Item, correct: boolean) {
     const prev = progress.get(item.id)
+    const day = studyToday()
+    const outcome =
+      mode === 'review' && prev ? reviewOutcome(prev.stage, correct, day) : learnOutcome(correct, day)
     const row: ProgressRow = {
       item_id: item.id,
-      status: correct ? 'mastered' : 'learning',
-      stage: 0,
-      due_date: correct ? null : addDays(studyToday(), 1),
+      ...outcome,
       correct_count: (prev?.correct_count ?? 0) + (correct ? 1 : 0),
       wrong_count: (prev?.wrong_count ?? 0) + (correct ? 0 : 1),
     }
@@ -131,16 +148,18 @@ export default function App() {
       {screen.name === 'home' && (
         <Home
           learnCount={learnPool.length}
+          reviewCount={reviewPool.length}
           masteredCount={counts.mastered}
           learningCount={counts.learning}
-          onLearn={startLearn}
+          onLearn={() => start('learn')}
+          onReview={() => start('review')}
         />
       )}
       {screen.name === 'quiz' && (
         <Quiz
           key={screen.items.map((i) => i.id).join(',')}
           items={screen.items}
-          onAnswer={handleAnswer}
+          onAnswer={(item, correct) => handleAnswer(screen.mode, item, correct)}
           onFinish={(records) => setScreen({ name: 'result', records })}
           onQuit={() => setScreen({ name: 'home' })}
         />
