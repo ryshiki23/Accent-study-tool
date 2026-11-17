@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { buildLearnSet, buildOddOneOut, questionItems } from './questions'
+import { buildLearnSet, buildOddOneOut, LEARN_WINDOW, MAX_TWO_SYLLABLE, questionItems } from './questions'
 import type { Item } from './types'
 
 const all: Item[] = JSON.parse(readFileSync('public/data/items.json', 'utf8'))
@@ -66,5 +66,31 @@ describe('B の位置', () => {
       expect(pos[0]).toBeLessThan(5)
       expect(pos[1]).toBeGreaterThanOrEqual(5)
     }
+  })
+})
+
+describe('Learn の選び方', () => {
+  it('2 音節の問題は 5 問まで（頻度の一番高いところでも）', () => {
+    for (let s = 0; s < 50; s++) {
+      const set = buildLearnSet(pool, 10, seeded(s))
+      const two = set.filter((q) => questionItems(q)[0].syllables === 2).length
+      expect(two).toBeLessThanOrEqual(MAX_TWO_SYLLABLE)
+    }
+  })
+  it('1 語の問題は頻度の高い 100 語の中から選ぶ', () => {
+    const near = new Set(pool.slice(0, LEARN_WINDOW).map((i) => i.id))
+    for (let s = 0; s < 20; s++) {
+      for (const q of buildLearnSet(pool, 10, seeded(s))) {
+        if (q.kind !== 'B') expect(near.has(q.item.id)).toBe(true)
+      }
+    }
+  })
+  it('毎回同じ組にならない', () => {
+    const key = (s: number) => buildLearnSet(pool, 10, seeded(s)).flatMap((q) => questionItems(q).map((i) => i.id)).sort().join()
+    expect(key(1)).not.toBe(key(2))
+  })
+  it('3 音節以上が足りないときは 2 音節で埋める', () => {
+    const twos = pool.filter((i) => i.syllables === 2).slice(0, 50)
+    expect(buildLearnSet(twos, 10, seeded(3))).toHaveLength(10)
   })
 })

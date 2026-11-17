@@ -64,26 +64,58 @@ export function buildOddOneOut(candidates: Item[], rng: Rng = Math.random): Ques
   return null
 }
 
+/** Learn で選ぶ範囲：まだ出していない語のうち、頻度の高い順にこの数まで */
+export const LEARN_WINDOW = 100
+/** 1 組のうち 2 音節の問題の上限 */
+export const MAX_TWO_SYLLABLE = 5
+
+const isTwo = (q: Question) => questionItems(q)[0].syllables === 2
+
 /**
- * Learn の 1 組（SPEC 6.2）：未学習の語を頻度順に、1 語の問題 + 仲間はずれ B_PER_SET 問、計 size 問。
- * pool は頻度の高い順に並んだ未学習の詞条。
+ * Learn の 1 組（SPEC 6.2）：未学習の語のうち頻度の高い LEARN_WINDOW 語からランダムに、
+ * 1 語の問題 + 仲間はずれ B_PER_SET 問、計 size 問。2 音節の問題は MAX_TWO_SYLLABLE 問まで
+ * （3 音節以上が足りないときだけ超える）。pool は頻度の高い順に並んだ未学習の詞条。
  */
 export function buildLearnSet(pool: Item[], size: number, rng: Rng = Math.random): Question[] {
-  const singles = pool.slice(0, size - B_PER_SET).map(singleQuestion)
-  const used = new Set(singles.map((q) => (q.kind === 'B' ? '' : q.item.id)))
+  const window = shuffle(pool.slice(0, LEARN_WINDOW), rng)
+  const used = new Set<string>()
+  const take = (q: Question) => questionItems(q).forEach((it) => used.add(it.id))
+  const free = (items: Item[]) => items.filter((it) => !used.has(it.id))
+  const byFreq = (items: Item[]) => [...items].sort((a, b) => b.zipf - a.zipf)
+
+  // 仲間はずれ：なるべく 3 音節以上で作る。範囲内で作れなければ 200 語まで広げる
   const odds: Question[] = []
-  // 仲間はずれの候補：その後ろの語から（頻度順に 200 語まで見る）
-  let rest = pool.filter((it) => !used.has(it.id)).slice(0, 200)
   for (let i = 0; i < B_PER_SET; i++) {
-    const q = buildOddOneOut(rest, rng)
+    const near = byFreq(free(window))
+    const q =
+      buildOddOneOut(near.filter((it) => it.syllables >= 3), rng) ??
+      buildOddOneOut(near, rng) ??
+      buildOddOneOut(free(pool.slice(0, 200)), rng)
     if (!q) break
     odds.push(q)
-    const ids = new Set(questionItems(q).map((it) => it.id))
-    rest = rest.filter((it) => !ids.has(it.id))
+    take(q)
   }
-  // B が作れなかった分は 1 語の問題で埋める
-  const fill = rest.slice(0, size - singles.length - odds.length).map(singleQuestion)
-  const set = [...singles, ...fill]
+
+  // 1 語の問題：ランダムに。2 音節は上限まで、足りなければ上限を超えて埋める
+  const singles: Question[] = []
+  let two = odds.filter(isTwo).length
+  const need = size - odds.length
+  for (const it of free(window)) {
+    if (singles.length >= need) break
+    if (it.syllables === 2 && two >= MAX_TWO_SYLLABLE) continue
+    const q = singleQuestion(it)
+    singles.push(q)
+    take(q)
+    if (it.syllables === 2) two++
+  }
+  for (const it of [...free(window), ...free(pool)]) {
+    if (singles.length >= need) break
+    const q = singleQuestion(it)
+    singles.push(q)
+    take(q)
+  }
+
+  const set = [...singles]
   // B は前半と後半に 1 問ずつ（10 問なら 3〜5 問目と 7〜9 問目）。最初の問題は 1 語の問題にする
   odds.forEach((q, i) => {
     const segment = Math.floor((set.length + odds.length) / odds.length)
