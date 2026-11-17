@@ -40,7 +40,10 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
   function choose(value: number | string) {
     if (answered) return
     setChosen(value)
-    const retries: Item[] = []
+    /** 1 回目に間違えた詞条（結果画面用） */
+    const missed: Item[] = []
+    /** 最後に出し直す問題 */
+    const retries: Question[] = []
     let correct: boolean
 
     if (q.kind === 'B') {
@@ -52,11 +55,20 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
         if (correct) q.items.forEach((it) => onAnswer(it, true))
         else [chosenItem, answerItem].forEach((it) => onAnswer(it, false))
       }
-      if (!correct) retries.push(chosenItem, answerItem)
+      if (!correct) {
+        missed.push(chosenItem, answerItem)
+        // 1 回目の間違い：2 語を 1 語ずつ出してから、元の問題をもう一度（選択肢は並べ替え）
+        // 元の問題の出し直しでまた間違えたら、元の問題だけをもう一度
+        if (!entry.retry) retries.push(singleQuestion(chosenItem), singleQuestion(answerItem))
+        retries.push(reshuffle(q))
+      }
     } else {
       correct = value === q.item.stress
       if (!entry.retry) onAnswer(q.item, correct)
-      if (!correct) retries.push(q.item)
+      if (!correct) {
+        missed.push(q.item)
+        retries.push(q)
+      }
     }
 
     if (!entry.retry) {
@@ -65,12 +77,12 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
         correct: s.correct + (correct ? 1 : 0),
         wrong: correct
           ? s.wrong
-          : [...s.wrong, ...retries.map((item) => ({ item, chosen: typeof value === 'number' ? value : undefined }))],
+          : [...s.wrong, ...missed.map((item) => ({ item, chosen: typeof value === 'number' ? value : undefined }))],
       }))
     }
     setOutstanding((o) => o.map((n, i) => (i === entry.origin ? n - 1 + retries.length : n)))
     if (retries.length > 0) {
-      setQueue((qq) => [...qq, ...retries.map((it) => ({ q: singleQuestion(it), origin: entry.origin, retry: true }))])
+      setQueue((qq) => [...qq, ...retries.map((rq) => ({ q: rq, origin: entry.origin, retry: true }))])
     }
   }
 
@@ -198,6 +210,19 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
       )}
     </div>
   )
+}
+
+/** 仲間はずれの選択肢の並びを変える（位置で覚えないように） */
+function reshuffle(q: Extract<Question, { kind: 'B' }>): Question {
+  const items = [...q.items]
+  for (let k = 0; k < 10; k++) {
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[items[i], items[j]] = [items[j], items[i]]
+    }
+    if (items.some((it, i) => it.id !== q.items[i].id)) break
+  }
+  return { ...q, items }
 }
 
 /** 例文。対象の語に下線 */
