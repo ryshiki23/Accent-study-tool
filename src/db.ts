@@ -21,6 +21,16 @@ export async function getState(userId: string): Promise<RemoteState> {
   return data as RemoteState
 }
 
+/** 「この問題を報告」。失敗したら 1 回だけ再送 */
+export async function reportItem(userId: string, itemId: string): Promise<boolean> {
+  if (!supabase) return false
+  for (let i = 0; i < 2; i++) {
+    const { error } = await supabase.rpc('report_item', { p_user_id: userId, p_item_id: itemId })
+    if (!error) return true
+  }
+  return false
+}
+
 // ===== save_answer：送信キュー（失敗したら自動で再試行）=====
 
 interface SaveArgs {

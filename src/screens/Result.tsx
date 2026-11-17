@@ -1,15 +1,32 @@
 import type { SetSummary } from '../types'
+import { useState } from 'react'
 import { labelWithPos } from '../questions'
+import Avatar from '../components/Avatar'
 
 interface Props {
   summary: SetSummary
   onHome: () => void
+  /** この組でレベルが上がったら、新しいレベル */
+  levelUp: number | null
 }
 
-export default function Result({ summary, onHome }: Props) {
+export default function Result({ summary, onHome, levelUp }: Props) {
   const { total, correct, wrong } = summary
+  const [showLevelUp, setShowLevelUp] = useState(levelUp !== null)
   return (
     <div className="flex flex-1 flex-col pt-12">
+      {showLevelUp && levelUp !== null && (
+        <div className="fixed inset-0 z-20 flex items-center justify-center bg-slate-900/30 px-6" onClick={() => setShowLevelUp(false)}>
+          <div className="animate-fade-in w-full max-w-xs rounded-3xl bg-white p-6 text-center shadow-2xl">
+            <p className="text-2xl font-extrabold text-indigo-600">レベルアップ！</p>
+            <div className="mt-4 flex justify-center">
+              <Avatar level={levelUp} mood="happy" size={112} bounceKey={1} />
+            </div>
+            <p className="mt-3 text-lg font-bold">Lv{levelUp - 1} → Lv{levelUp}</p>
+            <button className="mt-5 h-12 w-full rounded-2xl bg-indigo-500 font-bold text-white">やったね！</button>
+          </div>
+        </div>
+      )}
       <p className="text-center text-slate-500">おつかれさま！</p>
       <p className="mt-2 text-center text-6xl font-bold">
         {correct}

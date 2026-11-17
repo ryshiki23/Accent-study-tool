@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { Item, ProgressRow, SetSummary } from './types'
 import { buildLearnSet, singleQuestion, type Question } from './questions'
-import { dbConfigured, getState, onUnsavedChange, saveAnswer } from './db'
+import { dbConfigured, getState, onUnsavedChange, reportItem, saveAnswer } from './db'
+import { levelOf } from './level'
 import { readUserId } from './userId'
 import { studyToday } from './date'
 import { dueRows, learnOutcome, reviewOutcome } from './srs'
@@ -19,8 +20,8 @@ type Mode = 'learn' | 'review'
 
 type Screen =
   | { name: Tab }
-  | { name: 'quiz'; mode: Mode; questions: Question[]; key: number }
-  | { name: 'result'; summary: SetSummary }
+  | { name: 'quiz'; mode: Mode; questions: Question[]; key: number; levelBefore: number }
+  | { name: 'result'; summary: SetSummary; levelUp: number | null }
 
 type Load =
   | { state: 'loading' }
@@ -135,7 +136,8 @@ export default function App() {
     // Learn：1 語の問題 + 仲間はずれ。Review：1 語の問題だけ（S 類は例文）
     const questions =
       mode === 'learn' ? buildLearnSet(learnPool, SET_SIZE) : reviewPool.slice(0, SET_SIZE).map(singleQuestion)
-    if (questions.length > 0) setScreen({ name: 'quiz', mode, questions, key: Date.now() })
+    if (questions.length > 0)
+      setScreen({ name: 'quiz', mode, questions, key: Date.now(), levelBefore: levelOf(counts.mastered).level })
   }
 
   // 採点：Learn は SPEC 6.2、Review は SPEC 6.3（間隔は src/srs.ts）
@@ -182,7 +184,8 @@ export default function App() {
           learnCount={learnPool.length}
           reviewCount={reviewPool.length}
           masteredCount={counts.mastered}
-          learningCount={counts.learning}
+          isNew={progress.size === 0}
+          answeredToday={studyDays.get(today) ?? 0}
           onLearn={() => start('learn')}
           onReview={() => start('review')}
         />
@@ -193,7 +196,12 @@ export default function App() {
           questions={screen.questions}
           sibling={siblingOf}
           onAnswer={(item, correct, countAnswer) => handleAnswer(screen.mode, item, correct, countAnswer)}
-          onFinish={(summary) => setScreen({ name: 'result', summary })}
+          onFinish={(summary) => {
+            const after = levelOf(counts.mastered).level
+            setScreen({ name: 'result', summary, levelUp: after > screen.levelBefore ? after : null })
+          }}
+          onReport={(id) => reportItem(userId!, id)}
+          level={levelOf(counts.mastered).level}
           onQuit={() => setScreen({ name: 'home' })}
         />
       )}
@@ -208,7 +216,7 @@ export default function App() {
       )}
       {isTab && <NavBar tab={screen.name as Tab} onChange={(t) => setScreen({ name: t })} />}
       {screen.name === 'result' && (
-        <Result summary={screen.summary} onHome={() => setScreen({ name: 'home' })} />
+        <Result summary={screen.summary} levelUp={screen.levelUp} onHome={() => setScreen({ name: 'home' })} />
       )}
     </Shell>
   )

@@ -24,6 +24,10 @@ npm run dev
 - `supabase/schema.sql` を Supabase の SQL Editor で実行（何度実行しても大丈夫）。
 - 利用者用 ID と URL の作成：`node scripts/new_user_id.mjs https://<サイトのURL>`
 
+## 形象の画像
+`public/avatar/` に `lv{レベル}_{状態}.png` を置くと差し替わる（詳しくは `public/avatar/README.md`）。
+アイコン（ホーム画面用）は `python3 scripts/make_icons.py` で作り直せる。
+
 ## データの出典
 - CMU Pronouncing Dictionary（BSD）
 - Britfone（MIT）

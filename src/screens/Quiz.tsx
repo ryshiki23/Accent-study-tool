@@ -3,6 +3,8 @@ import type { Item, SetSummary } from '../types'
 import { labelWithPos, POS_LABEL, questionItems, singleQuestion, type Question } from '../questions'
 import { ruleLines } from '../rules'
 import StressedWord from '../components/StressedWord'
+import Avatar, { type Mood } from '../components/Avatar'
+import { ReportButton, SpeakButton } from '../components/QuizTools'
 
 interface Props {
   questions: Question[]
@@ -12,7 +14,13 @@ interface Props {
   onAnswer: (item: Item, correct: boolean, countAnswer: boolean) => void
   onFinish: (summary: SetSummary) => void
   onQuit: () => void
+  /** 「この問題を報告」 */
+  onReport: (id: string) => Promise<boolean>
+  level: number
 }
+
+/** 何問続けて正解したらお祝いするか（1 組に 1 回だけ） */
+const STREAK = 5
 
 interface Entry {
   q: Question
@@ -25,7 +33,7 @@ interface Entry {
  * 1 組の出題。間違えた語は最後にもう一度（1 語の問題で）出し、正解するまで繰り返す（SPEC 6.3.1）。
  * 進捗の記録（onAnswer）と結果画面の集計は、各問題の 1 回目の解答だけ。
  */
-export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }: Props) {
+export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit, onReport, level }: Props) {
   const [queue, setQueue] = useState<Entry[]>(questions.map((q, i) => ({ q, origin: i, retry: false })))
   const [index, setIndex] = useState(0)
   /** A / C は選んだ位置、B は選んだ詞条の id */
@@ -33,6 +41,11 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
   /** 元の問題ごとに、まだ正解していない出題の数 */
   const [outstanding, setOutstanding] = useState<number[]>(questions.map(() => 1))
   const [summary, setSummary] = useState<SetSummary>({ total: questions.length, correct: 0, wrong: [] })
+  const [streak, setStreak] = useState(0)
+  const [celebrated, setCelebrated] = useState(false)
+  const [celebrating, setCelebrating] = useState(false)
+  /** 正解のたびに増やして形象をジャンプさせる */
+  const [hop, setHop] = useState(0)
 
   const entry = queue[index]
   const { q } = entry
@@ -73,6 +86,19 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
       }
     }
 
+    if (correct) {
+      setHop((h) => h + 1)
+      const nextStreak = streak + 1
+      setStreak(nextStreak)
+      if (nextStreak >= STREAK && !celebrated) {
+        setCelebrated(true)
+        setCelebrating(true)
+        setTimeout(() => setCelebrating(false), 1800)
+      }
+    } else {
+      setStreak(0)
+    }
+
     if (!entry.retry) {
       setSummary((s) => ({
         ...s,
@@ -97,13 +123,24 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
     }
   }
 
+  const mood: Mood = !answered ? 'normal' : isCorrect(q, chosen) ? 'happy' : 'sad'
+
   return (
     <div className="flex flex-1 flex-col pt-4">
+      {celebrating && (
+        <div className="pointer-events-none fixed inset-x-0 top-1/3 z-20 flex justify-center">
+          <div className="animate-pop rounded-3xl bg-white/95 px-6 py-4 text-center shadow-xl">
+            <p className="text-4xl">🎉</p>
+            <p className="mt-1 text-lg font-bold text-indigo-600">{STREAK} 問連続正解！</p>
+          </div>
+        </div>
+      )}
       {/* 上部：進捗と終了 */}
       <div className="flex items-center justify-between">
         <button onClick={onQuit} className="rounded-full px-3 py-2 text-slate-500 active:bg-white/60" aria-label="やめる">
           ✕ やめる
         </button>
+        <Avatar level={level} mood={mood} size={40} bounceKey={mood === 'happy' ? hop : undefined} />
         <span className="text-sm font-semibold text-slate-500">
           ✓ {cleared} / {questions.length}
         </span>
@@ -148,9 +185,9 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
       {/* 解説（解答後） */}
       {answered &&
         (q.kind === 'B' ? (
-          <OddExplanation q={q} correct={chosen === q.answer} />
+          <OddExplanation q={q} correct={chosen === q.answer} onReport={onReport} />
         ) : (
-          <Explanation item={q.item} correct={chosen === q.item.stress} sibling={sibling(q.item)} />
+          <Explanation item={q.item} correct={chosen === q.item.stress} sibling={sibling(q.item)} onReport={onReport} />
         ))}
 
       {/* 選択肢 */}
@@ -249,11 +286,23 @@ function Verdict({ correct }: { correct: boolean }) {
   )
 }
 
-function Explanation({ item, correct, sibling }: { item: Item; correct: boolean; sibling?: Item }) {
+function isCorrect(q: Question, chosen: number | string | null) {
+  return q.kind === 'B' ? chosen === q.answer : chosen === q.item.stress
+}
+
+interface ExplanationProps {
+  correct: boolean
+  onReport: (id: string) => Promise<boolean>
+}
+
+function Explanation({ item, correct, sibling, onReport }: ExplanationProps & { item: Item; sibling?: Item }) {
   const rules = ruleLines(item)
   return (
     <div className="rounded-2xl bg-white/90 p-4 shadow-sm">
-      <Verdict correct={correct} />
+      <div className="flex items-center justify-between gap-2">
+        <Verdict correct={correct} />
+        <SpeakButton item={item} />
+      </div>
       <p className="mt-2 text-2xl">
         <StressedWord item={item} />
       </p>
@@ -265,21 +314,31 @@ function Explanation({ item, correct, sibling }: { item: Item; correct: boolean;
       {rules.map((r) => (
         <p key={r} className="mt-2 text-sm text-slate-600">💡 {r}</p>
       ))}
+      <div className="mt-3 text-right">
+        <ReportButton key={item.id} onReport={() => onReport(item.id)} />
+      </div>
     </div>
   )
 }
 
-function OddExplanation({ q, correct }: { q: Extract<Question, { kind: 'B' }>; correct: boolean }) {
+function OddExplanation({ q, correct, onReport }: ExplanationProps & { q: Extract<Question, { kind: 'B' }> }) {
   return (
     <div className="rounded-2xl bg-white/90 p-4 shadow-sm">
       <Verdict correct={correct} />
       <ul className="mt-2 space-y-1">
         {questionItems(q).map((it) => (
-          <li key={it.id} className={`text-xl ${it.id === q.answer ? 'rounded-lg bg-emerald-50 px-2 -mx-2' : ''}`}>
+          <li
+            key={it.id}
+            className={`flex items-center justify-between gap-2 text-xl ${it.id === q.answer ? '-mx-2 rounded-lg bg-emerald-50 px-2' : ''}`}
+          >
             <StressedWord item={it} />
+            <SpeakButton item={it} small />
           </li>
         ))}
       </ul>
+      <div className="mt-3 text-right">
+        <ReportButton key={q.answer} onReport={() => onReport('B:' + q.items.map((i) => i.id).join(','))} />
+      </div>
     </div>
   )
 }
