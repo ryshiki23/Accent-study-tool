@@ -1,0 +1,1023 @@
+[
+ {
+  "id": "abuse",
+  "word": "abuse",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.66
+ },
+ {
+  "id": "advance",
+  "word": "advance",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "ad・vance",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.65
+ },
+ {
+  "id": "affect",
+  "word": "affect",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.59
+ },
+ {
+  "id": "alarm",
+  "word": "alarm",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "alar・m",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 4.28
+ },
+ {
+  "id": "amount",
+  "word": "amount",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "amoun・t",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.13
+ },
+ {
+  "id": "appeal",
+  "word": "appeal",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "ap・peal",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.67
+ },
+ {
+  "id": "approach",
+  "word": "approach",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "ap・proach",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.93
+ },
+ {
+  "id": "arrest",
+  "word": "arrest",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "ar・rest",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.55
+ },
+ {
+  "id": "assist",
+  "word": "assist",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "as・sist",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 4.42
+ },
+ {
+  "id": "attack",
+  "word": "attack",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "at・tack",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.09
+ },
+ {
+  "id": "attempt",
+  "word": "attempt",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.85
+ },
+ {
+  "id": "award",
+  "word": "award",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.88
+ },
+ {
+  "id": "campaign",
+  "word": "campaign",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "cam・paign",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.0
+ },
+ {
+  "id": "career",
+  "word": "career",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "ca・reer",
+  "tags": [
+   "語尾に強勢",
+   "カタカナ語",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.07
+ },
+ {
+  "id": "collapse",
+  "word": "collapse",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "col・lapse",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.18
+ },
+ {
+  "id": "command",
+  "word": "command",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "com・mand",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.7
+ },
+ {
+  "id": "concern",
+  "word": "concern",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "con・cern",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.66
+ },
+ {
+  "id": "control",
+  "word": "control",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "con・trol",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.4
+ },
+ {
+  "id": "debate",
+  "word": "debate",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・bate",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.64
+ },
+ {
+  "id": "decline",
+  "word": "decline",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・cline",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.4
+ },
+ {
+  "id": "defeat",
+  "word": "defeat",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・feat",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.51
+ },
+ {
+  "id": "delay",
+  "word": "delay",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・lay",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.4
+ },
+ {
+  "id": "delight",
+  "word": "delight",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・light",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 3.97
+ },
+ {
+  "id": "demand",
+  "word": "demand",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・mand",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.84
+ },
+ {
+  "id": "design",
+  "word": "design",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・sign",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.17
+ },
+ {
+  "id": "display",
+  "word": "display",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "dis・play",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.63
+ },
+ {
+  "id": "dispute",
+  "word": "dispute",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "dis・pute",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 4.27
+ },
+ {
+  "id": "divorce",
+  "word": "divorce",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "di・vorce",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 4.36
+ },
+ {
+  "id": "effect",
+  "word": "effect",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": true,
+  "source": "NGSL1000",
+  "zipf": 5.02
+ },
+ {
+  "id": "embrace",
+  "word": "embrace",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "em・brace",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 4.16
+ },
+ {
+  "id": "employ",
+  "word": "employ",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "em・ploy",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 3.96
+ },
+ {
+  "id": "escape",
+  "word": "escape",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "es・cape",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.64
+ },
+ {
+  "id": "exchange",
+  "word": "exchange",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "ex・change",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.85
+ },
+ {
+  "id": "excuse",
+  "word": "excuse",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "ex・cuse",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.56
+ },
+ {
+  "id": "mistake",
+  "word": "mistake",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "mis・take",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.67
+ },
+ {
+  "id": "neglect",
+  "word": "neglect",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 3.79
+ },
+ {
+  "id": "police",
+  "word": "police",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "po・lice",
+  "tags": [
+   "カタカナ語",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.33
+ },
+ {
+  "id": "preserve",
+  "word": "preserve",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.19
+ },
+ {
+  "id": "recruit",
+  "word": "recruit",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・cruit",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 3.89
+ },
+ {
+  "id": "reform",
+  "word": "reform",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.53
+ },
+ {
+  "id": "regard",
+  "word": "regard",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・gard",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.36
+ },
+ {
+  "id": "regret",
+  "word": "regret",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・gret",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 4.37
+ },
+ {
+  "id": "release",
+  "word": "release",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・lease",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.09
+ },
+ {
+  "id": "remark",
+  "word": "remark",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・mark",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 3.66
+ },
+ {
+  "id": "repair",
+  "word": "repair",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・pair",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.41
+ },
+ {
+  "id": "repeat",
+  "word": "repeat",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・peat",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.49
+ },
+ {
+  "id": "reply",
+  "word": "reply",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・ply",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.5
+ },
+ {
+  "id": "report",
+  "word": "report",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・port",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.32
+ },
+ {
+  "id": "request",
+  "word": "request",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・quest",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.76
+ },
+ {
+  "id": "reserve",
+  "word": "reserve",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・serve",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.6
+ },
+ {
+  "id": "resolve",
+  "word": "resolve",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・solve",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.17
+ },
+ {
+  "id": "resort",
+  "word": "resort",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・sort",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL3000",
+  "zipf": 4.37
+ },
+ {
+  "id": "respect",
+  "word": "respect",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.03
+ },
+ {
+  "id": "result",
+  "word": "result",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・sult",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.18
+ },
+ {
+  "id": "return",
+  "word": "return",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・turn",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.19
+ },
+ {
+  "id": "review",
+  "word": "review",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・view",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.12
+ },
+ {
+  "id": "reward",
+  "word": "reward",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・ward",
+  "tags": [
+   "2音節（名詞・形容詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL2000",
+  "zipf": 4.33
+ },
+ {
+  "id": "supply",
+  "word": "supply",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "sup・ply",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.81
+ },
+ {
+  "id": "support",
+  "word": "support",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "sup・port",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 5.53
+ },
+ {
+  "id": "surprise",
+  "word": "surprise",
+  "pos": null,
+  "syllables": 2,
+  "stress": 2,
+  "split": "sur・prise",
+  "tags": [
+   "2音節（動詞）",
+   "名動同形・不変"
+  ],
+  "class": "K",
+  "uk_checked": true,
+  "rescued": false,
+  "source": "NGSL1000",
+  "zipf": 4.75
+ }
+]

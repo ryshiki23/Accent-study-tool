@@ -1,0 +1,1850 @@
+[
+ {
+  "id": "abstract_noun",
+  "word": "abstract",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Read the abstract before the paper.",
+  "zipf": 4.14
+ },
+ {
+  "id": "abstract_verb",
+  "word": "abstract",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We abstract data from the report.",
+  "zipf": 4.14
+ },
+ {
+  "id": "accent_noun",
+  "word": "accent",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She speaks with a French accent.",
+  "zipf": 4.14
+ },
+ {
+  "id": "accent_verb",
+  "word": "accent",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Accent the first word of the line.",
+  "zipf": 4.14
+ },
+ {
+  "id": "alloy_noun",
+  "word": "alloy",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "al・loy",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Bronze is an alloy.",
+  "zipf": 3.61
+ },
+ {
+  "id": "alloy_verb",
+  "word": "alloy",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "al・loy",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They alloy copper with tin.",
+  "zipf": 3.61
+ },
+ {
+  "id": "ally_noun",
+  "word": "ally",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "al・ly",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Japan is a close ally.",
+  "zipf": 4.1
+ },
+ {
+  "id": "ally_verb",
+  "word": "ally",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "al・ly",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The two nations will ally themselves.",
+  "zipf": 4.1
+ },
+ {
+  "id": "annex_noun",
+  "word": "annex",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "an・nex",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The office is in the annex.",
+  "zipf": 3.5
+ },
+ {
+  "id": "annex_verb",
+  "word": "annex",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "an・nex",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The country tried to annex the island.",
+  "zipf": 3.5
+ },
+ {
+  "id": "attribute_noun",
+  "word": "attribute",
+  "pos": "noun",
+  "syllables": 3,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Patience is his best attribute.",
+  "zipf": 3.77
+ },
+ {
+  "id": "attribute_verb",
+  "word": "attribute",
+  "pos": "verb",
+  "syllables": 3,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They attribute the success to luck.",
+  "zipf": 3.77
+ },
+ {
+  "id": "combat_noun",
+  "word": "combat",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "com・bat",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He died in combat.",
+  "zipf": 4.56
+ },
+ {
+  "id": "combat_verb",
+  "word": "combat",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "com・bat",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We must combat climate change.",
+  "zipf": 4.56
+ },
+ {
+  "id": "combine_noun",
+  "word": "combine",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "com・bine",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The farmer drove a combine.",
+  "zipf": 4.13
+ },
+ {
+  "id": "combine_verb",
+  "word": "combine",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "com・bine",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Combine the eggs and the flour.",
+  "zipf": 4.13
+ },
+ {
+  "id": "compact_noun",
+  "word": "compact",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "com・pact",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She checked her face in her compact.",
+  "zipf": 4.06
+ },
+ {
+  "id": "compact_verb",
+  "word": "compact",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "com・pact",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Machines compact the trash.",
+  "zipf": 4.06
+ },
+ {
+  "id": "compound_noun",
+  "word": "compound",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "com・pound",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Water is a chemical compound.",
+  "zipf": 4.18
+ },
+ {
+  "id": "compound_verb",
+  "word": "compound",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "com・pound",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The delay will compound the problem.",
+  "zipf": 4.18
+ },
+ {
+  "id": "concert_noun",
+  "word": "concert",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "con・cert",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We went to a concert.",
+  "zipf": 4.55
+ },
+ {
+  "id": "concert_verb",
+  "word": "concert",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "con・cert",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They will concert their efforts.",
+  "zipf": 4.55
+ },
+ {
+  "id": "conduct_noun",
+  "word": "conduct",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "His conduct was excellent.",
+  "zipf": 4.52
+ },
+ {
+  "id": "conduct_verb",
+  "word": "conduct",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We will conduct a survey.",
+  "zipf": 4.52
+ },
+ {
+  "id": "conflict_noun",
+  "word": "conflict",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The conflict lasted ten years.",
+  "zipf": 4.64
+ },
+ {
+  "id": "conflict_verb",
+  "word": "conflict",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "These results conflict with ours.",
+  "zipf": 4.64
+ },
+ {
+  "id": "console_noun",
+  "word": "console",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "con・sole",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He bought a game console.",
+  "zipf": 4.08
+ },
+ {
+  "id": "console_verb",
+  "word": "console",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "con・sole",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She tried to console her friend.",
+  "zipf": 4.08
+ },
+ {
+  "id": "construct_noun",
+  "word": "construct",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Time is a social construct.",
+  "zipf": 3.98
+ },
+ {
+  "id": "construct_verb",
+  "word": "construct",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They will construct a bridge.",
+  "zipf": 3.98
+ },
+ {
+  "id": "contest_noun",
+  "word": "contest",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "con・test",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She won the speech contest.",
+  "zipf": 4.53
+ },
+ {
+  "id": "contest_verb",
+  "word": "contest",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "con・test",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He will contest the decision.",
+  "zipf": 4.53
+ },
+ {
+  "id": "contract_noun",
+  "word": "contract",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Please sign the contract.",
+  "zipf": 4.94
+ },
+ {
+  "id": "contract_verb",
+  "word": "contract",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Muscles contract when you move.",
+  "zipf": 4.94
+ },
+ {
+  "id": "contrast_noun",
+  "word": "contrast",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "con・trast",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "There is a sharp contrast.",
+  "zipf": 4.46
+ },
+ {
+  "id": "contrast_verb",
+  "word": "contrast",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "con・trast",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Contrast the two poems.",
+  "zipf": 4.46
+ },
+ {
+  "id": "convert_noun",
+  "word": "convert",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "con・vert",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He is a recent convert.",
+  "zipf": 4.11
+ },
+ {
+  "id": "convert_verb",
+  "word": "convert",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "con・vert",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Convert yen into dollars.",
+  "zipf": 4.11
+ },
+ {
+  "id": "convict_noun",
+  "word": "convict",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The convict escaped from prison.",
+  "zipf": 3.56
+ },
+ {
+  "id": "convict_verb",
+  "word": "convict",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The jury may convict him.",
+  "zipf": 3.56
+ },
+ {
+  "id": "decrease_noun",
+  "word": "decrease",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "de・crease",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "There was a decrease in sales.",
+  "zipf": 4.17
+ },
+ {
+  "id": "decrease_verb",
+  "word": "decrease",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "de・crease",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Prices will decrease next year.",
+  "zipf": 4.17
+ },
+ {
+  "id": "defect_noun",
+  "word": "defect",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The car had a defect.",
+  "zipf": 3.68
+ },
+ {
+  "id": "defect_verb",
+  "word": "defect",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The spy tried to defect.",
+  "zipf": 3.68
+ },
+ {
+  "id": "desert_noun",
+  "word": "desert",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Camels live in the desert.",
+  "zipf": 4.4
+ },
+ {
+  "id": "desert_verb",
+  "word": "desert",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Never desert your friends.",
+  "zipf": 4.4
+ },
+ {
+  "id": "digest_noun",
+  "word": "digest",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "di・gest",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I read a news digest.",
+  "zipf": 3.71
+ },
+ {
+  "id": "digest_verb",
+  "word": "digest",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "di・gest",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Some foods are hard to digest.",
+  "zipf": 3.71
+ },
+ {
+  "id": "discharge_noun",
+  "word": "discharge",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "dis・charge",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The doctor approved her discharge.",
+  "zipf": 3.93
+ },
+ {
+  "id": "discharge_verb",
+  "word": "discharge",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "dis・charge",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The hospital will discharge him today.",
+  "zipf": 3.93
+ },
+ {
+  "id": "discount_noun",
+  "word": "discount",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Students get a discount.",
+  "zipf": 4.35
+ },
+ {
+  "id": "discount_verb",
+  "word": "discount",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Don't discount his opinion.",
+  "zipf": 4.35
+ },
+ {
+  "id": "escort_noun",
+  "word": "escort",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "es・cort",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The president had a police escort.",
+  "zipf": 4.0
+ },
+ {
+  "id": "escort_verb",
+  "word": "escort",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "es・cort",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Guards will escort the visitors.",
+  "zipf": 4.0
+ },
+ {
+  "id": "essay_noun",
+  "word": "essay",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "es・say",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I wrote an essay.",
+  "zipf": 4.23
+ },
+ {
+  "id": "essay_verb",
+  "word": "essay",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "es・say",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He will essay a difficult task.",
+  "zipf": 4.23
+ },
+ {
+  "id": "exploit_noun",
+  "word": "exploit",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "ex・ploit",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "His brave exploit made him famous.",
+  "zipf": 3.83
+ },
+ {
+  "id": "exploit_verb",
+  "word": "exploit",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "ex・ploit",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Companies exploit cheap labor.",
+  "zipf": 3.83
+ },
+ {
+  "id": "export_noun",
+  "word": "export",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "ex・port",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Rice is a major export.",
+  "zipf": 4.24
+ },
+ {
+  "id": "export_verb",
+  "word": "export",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "ex・port",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Japan will export more cars.",
+  "zipf": 4.24
+ },
+ {
+  "id": "extract_noun",
+  "word": "extract",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Add some vanilla extract.",
+  "zipf": 4.02
+ },
+ {
+  "id": "extract_verb",
+  "word": "extract",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The dentist will extract the tooth.",
+  "zipf": 4.02
+ },
+ {
+  "id": "impact_noun",
+  "word": "impact",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "im・pact",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "It had a big impact.",
+  "zipf": 4.92
+ },
+ {
+  "id": "impact_verb",
+  "word": "impact",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "im・pact",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Rain will impact the harvest.",
+  "zipf": 4.92
+ },
+ {
+  "id": "import_noun",
+  "word": "import",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "im・port",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Oil is an important import.",
+  "zipf": 4.1
+ },
+ {
+  "id": "import_verb",
+  "word": "import",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "im・port",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We import oil.",
+  "zipf": 4.1
+ },
+ {
+  "id": "increase_noun",
+  "word": "increase",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "in・crease",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "There was an increase in crime.",
+  "zipf": 5.08
+ },
+ {
+  "id": "increase_verb",
+  "word": "increase",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "in・crease",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Costs will increase.",
+  "zipf": 5.08
+ },
+ {
+  "id": "insert_noun",
+  "word": "insert",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "in・sert",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The magazine had an insert.",
+  "zipf": 4.01
+ },
+ {
+  "id": "insert_verb",
+  "word": "insert",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "in・sert",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Insert the card here.",
+  "zipf": 4.01
+ },
+ {
+  "id": "insult_noun",
+  "word": "insult",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "in・sult",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "That was an insult.",
+  "zipf": 3.99
+ },
+ {
+  "id": "insult_verb",
+  "word": "insult",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "in・sult",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Don't insult him.",
+  "zipf": 3.99
+ },
+ {
+  "id": "intern_noun",
+  "word": "intern",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "in・tern",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She works as an intern.",
+  "zipf": 3.67
+ },
+ {
+  "id": "intern_verb",
+  "word": "intern",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "in・tern",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They will intern the prisoners.",
+  "zipf": 3.67
+ },
+ {
+  "id": "object_noun",
+  "word": "object",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "What is that strange object?",
+  "zipf": 4.56
+ },
+ {
+  "id": "object_verb",
+  "word": "object",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I object to this plan.",
+  "zipf": 4.56
+ },
+ {
+  "id": "overlap_noun",
+  "word": "overlap",
+  "pos": "noun",
+  "syllables": 3,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "There is some overlap.",
+  "zipf": 3.7
+ },
+ {
+  "id": "overlap_verb",
+  "word": "overlap",
+  "pos": "verb",
+  "syllables": 3,
+  "stress": 3,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The two circles overlap.",
+  "zipf": 3.7
+ },
+ {
+  "id": "perfect_adj",
+  "word": "perfect",
+  "pos": "adj",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Her answer was perfect.",
+  "zipf": 5.2
+ },
+ {
+  "id": "perfect_verb",
+  "word": "perfect",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He wants to perfect his skills.",
+  "zipf": 5.2
+ },
+ {
+  "id": "perfume_noun",
+  "word": "perfume",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "per・fume",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She wore expensive perfume.",
+  "zipf": 3.75
+ },
+ {
+  "id": "perfume_verb",
+  "word": "perfume",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "per・fume",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Flowers perfume the air.",
+  "zipf": 3.75
+ },
+ {
+  "id": "permit_noun",
+  "word": "permit",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "per・mit",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "You need a parking permit.",
+  "zipf": 4.22
+ },
+ {
+  "id": "permit_verb",
+  "word": "permit",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "per・mit",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They permit smoking here.",
+  "zipf": 4.22
+ },
+ {
+  "id": "present_noun",
+  "word": "present",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I got a birthday present.",
+  "zipf": 5.18
+ },
+ {
+  "id": "present_verb",
+  "word": "present",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She will present her findings.",
+  "zipf": 5.18
+ },
+ {
+  "id": "produce_noun",
+  "word": "produce",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "pro・duce",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They sell fresh produce.",
+  "zipf": 4.78
+ },
+ {
+  "id": "produce_verb",
+  "word": "produce",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "pro・duce",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Factories produce cars.",
+  "zipf": 4.78
+ },
+ {
+  "id": "progress_noun",
+  "word": "progress",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "You made great progress.",
+  "zipf": 4.78
+ },
+ {
+  "id": "progress_verb",
+  "word": "progress",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The work will progress slowly.",
+  "zipf": 4.78
+ },
+ {
+  "id": "project_noun",
+  "word": "project",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "projec・t",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Our project is almost done.",
+  "zipf": 5.22
+ },
+ {
+  "id": "project_verb",
+  "word": "project",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "projec・t",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They project higher sales.",
+  "zipf": 5.22
+ },
+ {
+  "id": "protest_noun",
+  "word": "protest",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Thousands joined the protest.",
+  "zipf": 4.45
+ },
+ {
+  "id": "protest_verb",
+  "word": "protest",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Workers protest the new law.",
+  "zipf": 4.45
+ },
+ {
+  "id": "rebel_noun",
+  "word": "rebel",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The rebel was finally captured.",
+  "zipf": 4.08
+ },
+ {
+  "id": "rebel_verb",
+  "word": "rebel",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Teenagers often rebel.",
+  "zipf": 4.08
+ },
+ {
+  "id": "rebound_noun",
+  "word": "rebound",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "re・bound",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He caught the rebound.",
+  "zipf": 3.53
+ },
+ {
+  "id": "rebound_verb",
+  "word": "rebound",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・bound",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Prices will rebound soon.",
+  "zipf": 3.53
+ },
+ {
+  "id": "recall_noun",
+  "word": "recall",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The company announced a recall.",
+  "zipf": 4.4
+ },
+ {
+  "id": "recall_verb",
+  "word": "recall",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I can't recall his name.",
+  "zipf": 4.4
+ },
+ {
+  "id": "record_noun",
+  "word": "record",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "She broke the world record.",
+  "zipf": 5.21
+ },
+ {
+  "id": "record_verb",
+  "word": "record",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They will record the meeting.",
+  "zipf": 5.21
+ },
+ {
+  "id": "refund_noun",
+  "word": "refund",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "re・fund",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I asked for a refund.",
+  "zipf": 3.94
+ },
+ {
+  "id": "refund_verb",
+  "word": "refund",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・fund",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They will refund your money.",
+  "zipf": 3.94
+ },
+ {
+  "id": "refuse_noun",
+  "word": "refuse",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Put the refuse in the bin.",
+  "zipf": 4.39
+ },
+ {
+  "id": "refuse_verb",
+  "word": "refuse",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I refuse to give up.",
+  "zipf": 4.39
+ },
+ {
+  "id": "reject_noun",
+  "word": "reject",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "This shirt is a factory reject.",
+  "zipf": 4.03
+ },
+ {
+  "id": "reject_verb",
+  "word": "reject",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They may reject your offer.",
+  "zipf": 4.03
+ },
+ {
+  "id": "relay_noun",
+  "word": "relay",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "re・lay",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Our team won the relay.",
+  "zipf": 3.86
+ },
+ {
+  "id": "relay_verb",
+  "word": "relay",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・lay",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Please relay this message.",
+  "zipf": 3.86
+ },
+ {
+  "id": "rewrite_noun",
+  "word": "rewrite",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "re・write",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The script needs a rewrite.",
+  "zipf": 3.47
+ },
+ {
+  "id": "rewrite_verb",
+  "word": "rewrite",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "re・write",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Please rewrite this sentence.",
+  "zipf": 3.47
+ },
+ {
+  "id": "segment_noun",
+  "word": "segment",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Watch the next segment.",
+  "zipf": 4.26
+ },
+ {
+  "id": "segment_verb",
+  "word": "segment",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We segment customers by age.",
+  "zipf": 4.26
+ },
+ {
+  "id": "subject_noun",
+  "word": "subject",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Math is my favorite subject.",
+  "zipf": 4.96
+ },
+ {
+  "id": "subject_verb",
+  "word": "subject",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They subject him to tests.",
+  "zipf": 4.96
+ },
+ {
+  "id": "survey_noun",
+  "word": "survey",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "sur・vey",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We did a survey.",
+  "zipf": 4.69
+ },
+ {
+  "id": "survey_verb",
+  "word": "survey",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "sur・vey",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "They survey the land.",
+  "zipf": 4.69
+ },
+ {
+  "id": "suspect_noun",
+  "word": "suspect",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Police arrested the suspect.",
+  "zipf": 4.51
+ },
+ {
+  "id": "suspect_verb",
+  "word": "suspect",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "I suspect he is lying.",
+  "zipf": 4.51
+ },
+ {
+  "id": "transfer_noun",
+  "word": "transfer",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "trans・fer",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The bank transfer failed.",
+  "zipf": 4.72
+ },
+ {
+  "id": "transfer_verb",
+  "word": "transfer",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "trans・fer",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Transfer the files today.",
+  "zipf": 4.72
+ },
+ {
+  "id": "transplant_noun",
+  "word": "transplant",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "He needs a heart transplant.",
+  "zipf": 3.76
+ },
+ {
+  "id": "transplant_verb",
+  "word": "transplant",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Doctors will transplant the kidney.",
+  "zipf": 3.76
+ },
+ {
+  "id": "transport_noun",
+  "word": "transport",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "trans・port",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Public transport is cheap.",
+  "zipf": 4.68
+ },
+ {
+  "id": "transport_verb",
+  "word": "transport",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "trans・port",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Trucks transport goods.",
+  "zipf": 4.68
+ },
+ {
+  "id": "upgrade_noun",
+  "word": "upgrade",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "up・grade",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The computer needs an upgrade.",
+  "zipf": 4.24
+ },
+ {
+  "id": "upgrade_verb",
+  "word": "upgrade",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "up・grade",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "We will upgrade the system.",
+  "zipf": 4.24
+ },
+ {
+  "id": "uplift_noun",
+  "word": "uplift",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The news gave us an uplift.",
+  "zipf": 3.27
+ },
+ {
+  "id": "uplift_verb",
+  "word": "uplift",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": null,
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Music can uplift the spirit.",
+  "zipf": 3.27
+ },
+ {
+  "id": "upset_noun",
+  "word": "upset",
+  "pos": "noun",
+  "syllables": 2,
+  "stress": 1,
+  "split": "up・set",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "The game ended in an upset.",
+  "zipf": 4.61
+ },
+ {
+  "id": "upset_verb",
+  "word": "upset",
+  "pos": "verb",
+  "syllables": 2,
+  "stress": 2,
+  "split": "up・set",
+  "tags": [
+   "名前動後"
+  ],
+  "class": "S",
+  "sentence": "Don't upset your mother.",
+  "zipf": 4.61
+ }
+]
