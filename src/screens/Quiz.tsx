@@ -22,7 +22,8 @@ export default function Quiz({ items, onAnswer, onFinish, onQuit }: Props) {
 
   const item = queue[index]
   const answered = chosen !== null
-  const isRetry = records.some((r) => r.item.id === item.id)
+  // 元の出題（items）より後ろにあるのは、間違えた語の出し直し
+  const isRetry = index >= items.length
 
   function choose(n: number) {
     if (answered) return
