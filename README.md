@@ -6,7 +6,8 @@
 - ✅ 第 0 步：題庫（`public/data/items.json`、4751 詞条）とレポート（`data/generated/report.md`）
 - ✅ 第 1 步：Learn（題型 A・10 問）＋ 解説 ＋ 結果画面。進捗はメモリのみ
 - ✅ 第 1.5 步：Vercel 連携（ブランチごとにプレビュー URL）
-- ⬜ 第 2 步以降：SPEC.md 第 9 節
+- ✅ 第 2 步：Supabase 連携（URL の ID、進捗の保存・読み込み）
+- ⬜ 第 3 步以降：SPEC.md 第 9 節
 
 ## 動かし方
 ```bash
