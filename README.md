@@ -4,7 +4,14 @@
 
 ## 現状
 - ✅ 第 0 步：題庫（`public/data/items.json`、4751 詞条）とレポート（`data/generated/report.md`）
-- ⬜ 第 1 步以降：SPEC.md 第 9 節
+- ✅ 第 1 步：Learn（題型 A・10 問）＋ 解説 ＋ 結果画面。進捗はメモリのみ
+- ⬜ 第 1.5 步以降：SPEC.md 第 9 節
+
+## 動かし方
+```bash
+npm install
+npm run dev
+```
 
 ## データの出典
 - CMU Pronouncing Dictionary（BSD）
