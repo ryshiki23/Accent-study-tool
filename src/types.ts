@@ -21,3 +21,13 @@ export interface AnswerRecord {
   chosen: number
   correct: boolean
 }
+
+/** progress テーブルの 1 行（SPEC 8.2）。行がない詞条は new */
+export interface ProgressRow {
+  item_id: string
+  status: Status
+  stage: number
+  due_date: string | null
+  correct_count: number
+  wrong_count: number
+}

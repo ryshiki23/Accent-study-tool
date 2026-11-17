@@ -11,8 +11,14 @@
 ## 動かし方
 ```bash
 npm install
+cp .env.example .env.local   # Supabase の URL と anon key を入れる
 npm run dev
 ```
+ブラウザで `http://localhost:5173/?u=<22 文字の ID>` を開く。
+
+## データベース
+- `supabase/schema.sql` を Supabase の SQL Editor で実行（何度実行しても大丈夫）。
+- 利用者用 ID と URL の作成：`node scripts/new_user_id.mjs https://<サイトのURL>`
 
 ## データの出典
 - CMU Pronouncing Dictionary（BSD）

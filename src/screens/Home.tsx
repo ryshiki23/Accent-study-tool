@@ -47,7 +47,6 @@ export default function Home({ learnCount, masteredCount, learningCount, onLearn
           <p className="text-slate-500">間違えた</p>
         </div>
       </div>
-      <p className="mt-3 text-center text-xs text-slate-400">※ 今はまだ記録が保存されません（再読み込みで消えます）</p>
     </div>
   )
 }

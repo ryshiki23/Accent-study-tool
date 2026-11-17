@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { AnswerRecord, Item, Status } from './types'
+import type { AnswerRecord, Item, ProgressRow } from './types'
+import { dbConfigured, getState, onUnsavedChange, saveAnswer } from './db'
+import { readUserId } from './userId'
+import { addDays, studyToday } from './date'
 import Home from './screens/Home'
 import Quiz from './screens/Quiz'
 import Result from './screens/Result'
@@ -11,56 +14,125 @@ type Screen =
   | { name: 'quiz'; items: Item[] }
   | { name: 'result'; records: AnswerRecord[] }
 
+type Load =
+  | { state: 'loading' }
+  | { state: 'error'; message: string }
+  | { state: 'ready'; items: Item[] }
+
+const userId = readUserId()
+
 export default function App() {
-  const [items, setItems] = useState<Item[] | null>(null)
-  const [loadError, setLoadError] = useState(false)
-  // 進捗（第 1 步ではメモリのみ。リロードで消える）
-  const [progress, setProgress] = useState<Map<string, Status>>(new Map())
+  const [load, setLoad] = useState<Load>({ state: 'loading' })
+  // 進捗：起動時に get_state で 1 回読み、あとはメモリで管理（SPEC 8.4）
+  const [progress, setProgress] = useState<Map<string, ProgressRow>>(new Map())
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
+  const [unsaved, setUnsaved] = useState(false)
+
+  useEffect(() => onUnsavedChange(setUnsaved), [])
 
   useEffect(() => {
-    fetch('/data/items.json')
-      .then((r) => r.json())
-      .then((data: Item[]) => setItems(data))
-      .catch(() => setLoadError(true))
+    if (!userId) return
+    if (!dbConfigured) {
+      setLoad({ state: 'error', message: 'サーバーの設定がありません。' })
+      return
+    }
+    Promise.all([
+      fetch('/data/items.json').then((r) => {
+        if (!r.ok) throw new Error()
+        return r.json() as Promise<Item[]>
+      }),
+      getState(userId),
+    ])
+      .then(([items, state]) => {
+        setProgress(new Map(state.progress.map((p) => [p.item_id, p])))
+        setLoad({ state: 'ready', items })
+      })
+      .catch(() => setLoad({ state: 'error', message: 'データを読み込めませんでした。' }))
   }, [])
 
   // Learn の出題候補：未学習、頻度の高い順。
   // S 類（名前動後）は品詞ラベル・例文つきの出題が必要なので第 4 步まで出さない。
   const learnPool = useMemo(() => {
-    if (!items) return []
-    return items
+    if (load.state !== 'ready') return []
+    return load.items
       .filter((it) => it.class !== 'S' && !progress.has(it.id))
       .sort((a, b) => b.zipf - a.zipf)
-  }, [items, progress])
+  }, [load, progress])
+
+  const counts = useMemo(() => {
+    let mastered = 0
+    let learning = 0
+    for (const p of progress.values()) {
+      if (p.status === 'mastered') mastered++
+      else learning++
+    }
+    return { mastered, learning }
+  }, [progress])
+
+  if (!userId) {
+    return (
+      <Shell>
+        <p className="mt-24 text-center text-lg font-bold">リンクが正しくありません</p>
+        <p className="mt-2 text-center text-sm text-slate-500">送られてきたリンクをもう一度開いてください。</p>
+      </Shell>
+    )
+  }
+  if (load.state === 'error') {
+    return (
+      <Shell>
+        <p className="mt-24 text-center">{load.message}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mx-auto mt-4 rounded-2xl bg-indigo-500 px-6 py-3 font-bold text-white"
+        >
+          再読み込み
+        </button>
+      </Shell>
+    )
+  }
+  if (load.state === 'loading') {
+    return <Shell><p className="mt-24 text-center text-slate-500">読み込み中…</p></Shell>
+  }
 
   function startLearn() {
     const set = learnPool.slice(0, SET_SIZE)
     if (set.length > 0) setScreen({ name: 'quiz', items: set })
   }
 
+  // Learn の採点（SPEC 6.2）：正解 → mastered、不正解 → learning / stage 0 / 明日
   function handleAnswer(item: Item, correct: boolean) {
-    setProgress((prev) => {
-      const next = new Map(prev)
-      next.set(item.id, correct ? 'mastered' : 'learning')
-      return next
+    const prev = progress.get(item.id)
+    const row: ProgressRow = {
+      item_id: item.id,
+      status: correct ? 'mastered' : 'learning',
+      stage: 0,
+      due_date: correct ? null : addDays(studyToday(), 1),
+      correct_count: (prev?.correct_count ?? 0) + (correct ? 1 : 0),
+      wrong_count: (prev?.wrong_count ?? 0) + (correct ? 0 : 1),
+    }
+    setProgress((m) => new Map(m).set(item.id, row))
+    saveAnswer({
+      p_user_id: userId!,
+      p_item_id: row.item_id,
+      p_status: row.status,
+      p_stage: row.stage,
+      p_due_date: row.due_date,
+      p_correct: correct,
     })
-  }
-
-  if (loadError) {
-    return <Shell><p className="mt-20 text-center">問題データを読み込めませんでした。</p></Shell>
-  }
-  if (!items) {
-    return <Shell><p className="mt-20 text-center text-slate-500">読み込み中…</p></Shell>
   }
 
   return (
     <Shell>
+      {unsaved && (
+        <div className="fixed inset-x-0 top-0 z-10 mx-auto w-fit rounded-b-xl bg-amber-100 px-4 py-1 text-xs font-semibold text-amber-700 shadow">
+          未保存（自動で再送信中…）
+        </div>
+      )}
       {screen.name === 'home' && (
         <Home
           learnCount={learnPool.length}
-          masteredCount={[...progress.values()].filter((s) => s === 'mastered').length}
-          learningCount={[...progress.values()].filter((s) => s === 'learning').length}
+          masteredCount={counts.mastered}
+          learningCount={counts.learning}
           onLearn={startLearn}
         />
       )}
