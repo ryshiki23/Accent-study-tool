@@ -30,6 +30,8 @@ interface SaveArgs {
   p_stage: number
   p_due_date: string | null
   p_correct: boolean
+  /** false：今日の解答数に数えない */
+  p_count_answer: boolean
 }
 
 const queue: SaveArgs[] = []

@@ -8,13 +8,17 @@ import { dueRows, learnOutcome, reviewOutcome } from './srs'
 import Home from './screens/Home'
 import Quiz from './screens/Quiz'
 import Result from './screens/Result'
+import Notebook from './screens/Notebook'
+import Analysis from './screens/Analysis'
+import NavBar, { type Tab } from './components/NavBar'
+import { lastDays, tagStats, weakestTags } from './stats'
 
 const SET_SIZE = 10
 
 type Mode = 'learn' | 'review'
 
 type Screen =
-  | { name: 'home' }
+  | { name: Tab }
   | { name: 'quiz'; mode: Mode; questions: Question[]; key: number }
   | { name: 'result'; summary: SetSummary }
 
@@ -31,6 +35,8 @@ export default function App() {
   const [progress, setProgress] = useState<Map<string, ProgressRow>>(new Map())
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
   const [unsaved, setUnsaved] = useState(false)
+  // 日ごとの解答数（分析画面の棒グラフ用）
+  const [studyDays, setStudyDays] = useState<Map<string, number>>(new Map())
 
   useEffect(() => onUnsavedChange(setUnsaved), [])
 
@@ -49,6 +55,7 @@ export default function App() {
     ])
       .then(([items, state]) => {
         setProgress(new Map(state.progress.map((p) => [p.item_id, p])))
+        setStudyDays(new Map(state.study_days.map((d) => [d.day, d.answered])))
         setLoad({ state: 'ready', items })
       })
       .catch(() => setLoad({ state: 'error', message: 'データを読み込めませんでした。' }))
@@ -132,7 +139,7 @@ export default function App() {
   }
 
   // 採点：Learn は SPEC 6.2、Review は SPEC 6.3（間隔は src/srs.ts）
-  function handleAnswer(mode: Mode, item: Item, correct: boolean) {
+  function handleAnswer(mode: Mode, item: Item, correct: boolean, countAnswer: boolean) {
     const prev = progress.get(item.id)
     const day = studyToday()
     const outcome =
@@ -144,6 +151,7 @@ export default function App() {
       wrong_count: (prev?.wrong_count ?? 0) + (correct ? 0 : 1),
     }
     setProgress((m) => new Map(m).set(item.id, row))
+    if (countAnswer) setStudyDays((m) => new Map(m).set(day, (m.get(day) ?? 0) + 1))
     saveAnswer({
       p_user_id: userId!,
       p_item_id: row.item_id,
@@ -151,11 +159,19 @@ export default function App() {
       p_stage: row.stage,
       p_due_date: row.due_date,
       p_correct: correct,
+      p_count_answer: countAnswer,
     })
   }
 
+  const isTab = screen.name === 'home' || screen.name === 'notebook' || screen.name === 'analysis'
+  const notebookRows = [...progress.values()]
+    .filter((r) => r.status === 'learning')
+    .map((row) => ({ row, item: itemById.get(row.item_id) }))
+    .filter((r): r is { row: ProgressRow; item: Item } => !!r.item)
+  const stats = tagStats(load.items, progress)
+
   return (
-    <Shell>
+    <Shell padBottom={isTab}>
       {unsaved && (
         <div className="fixed inset-x-0 top-0 z-10 mx-auto w-fit rounded-b-xl bg-amber-100 px-4 py-1 text-xs font-semibold text-amber-700 shadow">
           未保存（自動で再送信中…）
@@ -176,11 +192,21 @@ export default function App() {
           key={screen.key}
           questions={screen.questions}
           sibling={siblingOf}
-          onAnswer={(item, correct) => handleAnswer(screen.mode, item, correct)}
+          onAnswer={(item, correct, countAnswer) => handleAnswer(screen.mode, item, correct, countAnswer)}
           onFinish={(summary) => setScreen({ name: 'result', summary })}
           onQuit={() => setScreen({ name: 'home' })}
         />
       )}
+      {screen.name === 'notebook' && <Notebook rows={notebookRows} today={today} />}
+      {screen.name === 'analysis' && (
+        <Analysis
+          stats={stats}
+          weakest={weakestTags(stats)}
+          totals={{ mastered: counts.mastered, learning: counts.learning, fresh: learnPool.length }}
+          days={lastDays(studyDays, today)}
+        />
+      )}
+      {isTab && <NavBar tab={screen.name as Tab} onChange={(t) => setScreen({ name: t })} />}
       {screen.name === 'result' && (
         <Result summary={screen.summary} onHome={() => setScreen({ name: 'home' })} />
       )}
@@ -188,6 +214,10 @@ export default function App() {
   )
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
-  return <div className="mx-auto flex min-h-dvh max-w-[480px] flex-col px-4 pb-6">{children}</div>
+function Shell({ children, padBottom = false }: { children: React.ReactNode; padBottom?: boolean }) {
+  return (
+    <div className={`mx-auto flex min-h-dvh max-w-[480px] flex-col px-4 ${padBottom ? 'pb-24' : 'pb-6'}`}>
+      {children}
+    </div>
+  )
 }

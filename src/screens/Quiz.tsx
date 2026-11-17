@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import type { Item, SetSummary } from '../types'
 import { labelWithPos, POS_LABEL, questionItems, singleQuestion, type Question } from '../questions'
-import { ruleLines, splitParts } from '../rules'
+import { ruleLines } from '../rules'
+import StressedWord from '../components/StressedWord'
 
 interface Props {
   questions: Question[]
   /** S 類の別品詞の詞条（解説用） */
   sibling: (item: Item) => Item | undefined
-  onAnswer: (item: Item, correct: boolean) => void
+  /** countAnswer：今日の解答数に数えるか（1 問で 1 回だけ true） */
+  onAnswer: (item: Item, correct: boolean, countAnswer: boolean) => void
   onFinish: (summary: SetSummary) => void
   onQuit: () => void
 }
@@ -52,8 +54,8 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
       const chosenItem = q.items.find((i) => i.id === value)!
       if (!entry.retry) {
         // 正解 → 4 語とも習得。不正解 → 選んだ語と正解の語を間違いとして記録（SPEC 第 3 節）
-        if (correct) q.items.forEach((it) => onAnswer(it, true))
-        else [chosenItem, answerItem].forEach((it) => onAnswer(it, false))
+        const recorded = correct ? q.items : [chosenItem, answerItem]
+        recorded.forEach((it, i) => onAnswer(it, correct, i === 0))
       }
       if (!correct) {
         missed.push(chosenItem, answerItem)
@@ -64,7 +66,7 @@ export default function Quiz({ questions, sibling, onAnswer, onFinish, onQuit }:
       }
     } else {
       correct = value === q.item.stress
-      if (!entry.retry) onAnswer(q.item, correct)
+      if (!entry.retry) onAnswer(q.item, correct, true)
       if (!correct) {
         missed.push(q.item)
         retries.push(q)
@@ -236,29 +238,6 @@ function Sentence({ item }: { item: Item }) {
       <span className="font-bold underline decoration-indigo-400 decoration-4 underline-offset-8">{m[0]}</span>
       {sentence.slice(m.index + m[0].length)}
     </>
-  )
-}
-
-/** 強勢位置つきの語（re・CORD 第 2 音節） */
-function StressedWord({ item, className = '' }: { item: Item; className?: string }) {
-  const parts = splitParts(item)
-  return (
-    <span className={className}>
-      {parts ? (
-        parts.map((p, i) => (
-          <span key={i}>
-            {i > 0 && <span className="text-slate-300">・</span>}
-            <span className={p.stressed ? 'font-extrabold text-indigo-600' : 'text-slate-600'}>{p.text}</span>
-          </span>
-        ))
-      ) : (
-        <span className="text-slate-700">{item.word}</span>
-      )}
-      {item.class === 'S' && item.pos && (
-        <span className="ml-1 text-base text-slate-500">（{POS_LABEL[item.pos] ?? item.pos}）</span>
-      )}
-      <span className="ml-2 text-base text-slate-500">第 {item.stress} 音節</span>
-    </span>
   )
 }
 

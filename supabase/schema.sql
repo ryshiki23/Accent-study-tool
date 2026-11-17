@@ -66,9 +66,13 @@ begin
   );
 end $$;
 
--- ===== save_answer：1 問ぶんの結果を保存 + 今日の解答数 +1 =====
+-- ===== save_answer：1 詞条ぶんの結果を保存 + 今日の解答数 +1 =====
+-- p_count_answer = false のときは解答数を数えない（仲間はずれ 1 問で 4 詞条を保存するときの 2 つ目以降）
+-- 旧版（引数 6 つ）は消してから作り直す
+drop function if exists save_answer(text, text, text, int, date, boolean);
 create or replace function save_answer(
-  p_user_id text, p_item_id text, p_status text, p_stage int, p_due_date date, p_correct boolean
+  p_user_id text, p_item_id text, p_status text, p_stage int, p_due_date date, p_correct boolean,
+  p_count_answer boolean default true
 ) returns void
 language plpgsql security definer set search_path = public as $$
 begin
@@ -88,9 +92,11 @@ begin
     wrong_count   = progress.wrong_count + excluded.wrong_count,
     updated_at    = now();
 
-  insert into study_days (user_id, day, answered)
-  values (p_user_id, _study_day(), 1)
-  on conflict (user_id, day) do update set answered = study_days.answered + 1;
+  if p_count_answer then
+    insert into study_days (user_id, day, answered)
+    values (p_user_id, _study_day(), 1)
+    on conflict (user_id, day) do update set answered = study_days.answered + 1;
+  end if;
 end $$;
 
 -- ===== report_item：「この問題を報告」=====
@@ -103,10 +109,10 @@ end $$;
 
 -- ===== 実行権限：この 3 つだけ anon に許可 =====
 revoke all on function get_state(text) from public;
-revoke all on function save_answer(text, text, text, int, date, boolean) from public;
+revoke all on function save_answer(text, text, text, int, date, boolean, boolean) from public;
 revoke all on function report_item(text, text) from public;
 revoke all on function _check_user_id(text) from public;
 revoke all on function _study_day() from public;
 grant execute on function get_state(text) to anon, authenticated;
-grant execute on function save_answer(text, text, text, int, date, boolean) to anon, authenticated;
+grant execute on function save_answer(text, text, text, int, date, boolean, boolean) to anon, authenticated;
 grant execute on function report_item(text, text) to anon, authenticated;

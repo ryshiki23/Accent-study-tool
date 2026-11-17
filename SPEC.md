@@ -259,7 +259,7 @@
 - 可按标签筛选
 
 ### 7.5 分析
-- 各规则标签的正确率，从低到高排序，最弱的三项突出显示
+- 各规则标签的正确率，从低到高排序，最弱的三项突出显示（只在答过 3 次以上的标签里选；不足 3 次的显示为灰色）
 - 累计：已掌握数、错题本数、未学习数
 - 最近 14 天每天的答题数
 
@@ -329,7 +329,7 @@ create table reports (
 - 三张表都开启 RLS，**不给匿名用户任何直接读写权限**。
 - 只通过三个数据库函数访问（`security definer`）：
   - `get_state(p_user_id)`：返回该用户的全部 progress 和 study_days
-  - `save_answer(p_user_id, p_item_id, p_status, p_stage, p_due_date, p_correct)`：更新一条进度，同时给当天的 `answered` 加 1
+  - `save_answer(p_user_id, p_item_id, p_status, p_stage, p_due_date, p_correct, p_count_answer)`：更新一条进度，同时给当天的 `answered` 加 1。题型 B 一题会保存 2–4 个词条，只有第一个 `p_count_answer = true`，所以 `answered` 是题数而不是词条数
   - `report_item(p_user_id, p_item_id)`
 - 这样别人即使拿到前端里的 key，不知道她的 ID 也读不到任何数据。
 - `user_id` 是 22 位随机串，由 Jing 生成一次后写进发给她的链接里。URL 里没有 `u` 参数时，显示「リンクが正しくありません」，不自动生成新用户。
