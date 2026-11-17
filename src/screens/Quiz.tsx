@@ -9,24 +9,35 @@ interface Props {
   onQuit: () => void
 }
 
+/**
+ * 1 組の出題。間違えた語は最後にもう一度出し、正解するまで繰り返す（SPEC 6.3.1）。
+ * 進捗の記録（onAnswer）と結果画面の記録は、各語の 1 回目の解答だけ。
+ */
 export default function Quiz({ items, onAnswer, onFinish, onQuit }: Props) {
+  const [queue, setQueue] = useState<Item[]>(items)
   const [index, setIndex] = useState(0)
   const [chosen, setChosen] = useState<number | null>(null)
   const [records, setRecords] = useState<AnswerRecord[]>([])
+  const [cleared, setCleared] = useState(0)
 
-  const item = items[index]
+  const item = queue[index]
   const answered = chosen !== null
+  const isRetry = records.some((r) => r.item.id === item.id)
 
   function choose(n: number) {
     if (answered) return
     const correct = n === item.stress
     setChosen(n)
-    setRecords((r) => [...r, { item, chosen: n, correct }])
-    onAnswer(item, correct)
+    if (!isRetry) {
+      setRecords((r) => [...r, { item, chosen: n, correct }])
+      onAnswer(item, correct)
+    }
+    if (correct) setCleared((c) => c + 1)
+    else setQueue((q) => [...q, item])
   }
 
   function next() {
-    if (index + 1 >= items.length) {
+    if (index + 1 >= queue.length) {
       onFinish(records)
     } else {
       setIndex(index + 1)
@@ -44,18 +55,21 @@ export default function Quiz({ items, onAnswer, onFinish, onQuit }: Props) {
           ✕ やめる
         </button>
         <span className="text-sm font-semibold text-slate-500">
-          {index + 1} / {items.length}
+          ✓ {cleared} / {items.length}
         </span>
       </div>
       <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/70">
         <div
           className="h-full rounded-full bg-indigo-400 transition-all"
-          style={{ width: `${((index + (answered ? 1 : 0)) / items.length) * 100}%` }}
+          style={{ width: `${(cleared / items.length) * 100}%` }}
         />
       </div>
 
       {/* 問題 */}
       <div className="flex flex-1 flex-col items-center justify-center py-8">
+        {isRetry && (
+          <span className="mb-2 rounded-full bg-amber-100 px-3 py-0.5 text-xs font-bold text-amber-700">もう一度</span>
+        )}
         <p className="text-sm text-slate-500">第一強勢はどこ？</p>
         <p className="mt-3 break-all text-center text-5xl font-bold tracking-wide">{item.word}</p>
         <p className="mt-3 text-sm text-slate-400">{item.syllables} 音節</p>
@@ -92,7 +106,7 @@ export default function Quiz({ items, onAnswer, onFinish, onQuit }: Props) {
           onClick={next}
           className="mt-4 h-14 rounded-2xl bg-indigo-500 text-lg font-bold text-white shadow-lg active:scale-[0.98]"
         >
-          {index + 1 >= items.length ? '結果を見る' : '次へ'}
+          {index + 1 >= queue.length ? '結果を見る' : '次へ'}
         </button>
       )}
     </div>
