@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { AnswerRecord, Item, ProgressRow } from './types'
+import type { Item, ProgressRow, SetSummary } from './types'
+import { buildLearnSet, singleQuestion, type Question } from './questions'
 import { dbConfigured, getState, onUnsavedChange, saveAnswer } from './db'
 import { readUserId } from './userId'
 import { studyToday } from './date'
@@ -14,8 +15,8 @@ type Mode = 'learn' | 'review'
 
 type Screen =
   | { name: 'home' }
-  | { name: 'quiz'; mode: Mode; items: Item[] }
-  | { name: 'result'; records: AnswerRecord[] }
+  | { name: 'quiz'; mode: Mode; questions: Question[]; key: number }
+  | { name: 'result'; summary: SetSummary }
 
 type Load =
   | { state: 'loading' }
@@ -53,12 +54,11 @@ export default function App() {
       .catch(() => setLoad({ state: 'error', message: 'データを読み込めませんでした。' }))
   }, [])
 
-  // Learn の出題候補：未学習、頻度の高い順。
-  // S 類（名前動後）は品詞ラベル・例文つきの出題が必要なので第 4 步まで出さない。
+  // Learn の出題候補：未学習、頻度の高い順（SPEC 6.2）
   const learnPool = useMemo(() => {
     if (load.state !== 'ready') return []
     return load.items
-      .filter((it) => it.class !== 'S' && !progress.has(it.id))
+      .filter((it) => !progress.has(it.id))
       .sort((a, b) => b.zipf - a.zipf)
   }, [load, progress])
 
@@ -74,6 +74,20 @@ export default function App() {
     () => dueRows(progress.values(), today).map((r) => itemById.get(r.item_id)).filter((it): it is Item => !!it),
     [progress, today, itemById],
   )
+
+  // S 類：同じ語の別品詞の詞条（解説で「動詞なら第 2 音節」と出す）
+  const siblings = useMemo(() => {
+    const m = new Map<string, Item>()
+    if (load.state !== 'ready') return m
+    const byWord = new Map<string, Item[]>()
+    for (const it of load.items) if (it.class === 'S') byWord.set(it.word, [...(byWord.get(it.word) ?? []), it])
+    for (const group of byWord.values()) for (const it of group) {
+      const other = group.find((g) => g.id !== it.id)
+      if (other) m.set(it.id, other)
+    }
+    return m
+  }, [load])
+  const siblingOf = (item: Item) => siblings.get(item.id)
 
   const counts = useMemo(() => {
     let mastered = 0
@@ -111,8 +125,10 @@ export default function App() {
   }
 
   function start(mode: Mode) {
-    const set = (mode === 'learn' ? learnPool : reviewPool).slice(0, SET_SIZE)
-    if (set.length > 0) setScreen({ name: 'quiz', mode, items: set })
+    // Learn：1 語の問題 + 仲間はずれ。Review：1 語の問題だけ（S 類は例文）
+    const questions =
+      mode === 'learn' ? buildLearnSet(learnPool, SET_SIZE) : reviewPool.slice(0, SET_SIZE).map(singleQuestion)
+    if (questions.length > 0) setScreen({ name: 'quiz', mode, questions, key: Date.now() })
   }
 
   // 採点：Learn は SPEC 6.2、Review は SPEC 6.3（間隔は src/srs.ts）
@@ -157,15 +173,16 @@ export default function App() {
       )}
       {screen.name === 'quiz' && (
         <Quiz
-          key={screen.items.map((i) => i.id).join(',')}
-          items={screen.items}
+          key={screen.key}
+          questions={screen.questions}
+          sibling={siblingOf}
           onAnswer={(item, correct) => handleAnswer(screen.mode, item, correct)}
-          onFinish={(records) => setScreen({ name: 'result', records })}
+          onFinish={(summary) => setScreen({ name: 'result', summary })}
           onQuit={() => setScreen({ name: 'home' })}
         />
       )}
       {screen.name === 'result' && (
-        <Result records={screen.records} onHome={() => setScreen({ name: 'home' })} />
+        <Result summary={screen.summary} onHome={() => setScreen({ name: 'home' })} />
       )}
     </Shell>
   )

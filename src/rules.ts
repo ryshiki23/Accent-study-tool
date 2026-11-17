@@ -39,6 +39,8 @@ export function ruleLines(item: Item): string[] {
   const lines: string[] = []
   for (const tag of item.tags) {
     if (tag === '規則の例外') continue
+    // K 類は「名動同形・不変」が要点なので、2 音節の傾向は出さない
+    if (item.class === 'K' && tag in TENDENCY) continue
     const text = RULE_TEXT[tag]
     if (!text) continue
     // 2 音節の「傾向」タグは、実際の強勢と逆なら例外と明記する

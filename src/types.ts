@@ -15,11 +15,12 @@ export interface Item {
 
 export type Status = 'learning' | 'mastered'
 
-/** 1 問の解答結果 */
-export interface AnswerRecord {
-  item: Item
-  chosen: number
-  correct: boolean
+/** 1 組の結果（結果画面用）。数えるのは各問題の 1 回目の解答だけ */
+export interface SetSummary {
+  total: number
+  correct: number
+  /** 1 回目に間違えた詞条。chosen は A / C で選んだ位置 */
+  wrong: { item: Item; chosen?: number }[]
 }
 
 /** progress テーブルの 1 行（SPEC 8.2）。行がない詞条は new */

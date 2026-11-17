@@ -1,19 +1,19 @@
-import type { AnswerRecord } from '../types'
+import type { SetSummary } from '../types'
+import { labelWithPos } from '../questions'
 
 interface Props {
-  records: AnswerRecord[]
+  summary: SetSummary
   onHome: () => void
 }
 
-export default function Result({ records, onHome }: Props) {
-  const correct = records.filter((r) => r.correct).length
-  const wrong = records.filter((r) => !r.correct)
+export default function Result({ summary, onHome }: Props) {
+  const { total, correct, wrong } = summary
   return (
     <div className="flex flex-1 flex-col pt-12">
       <p className="text-center text-slate-500">おつかれさま！</p>
       <p className="mt-2 text-center text-6xl font-bold">
         {correct}
-        <span className="text-2xl text-slate-400"> / {records.length}</span>
+        <span className="text-2xl text-slate-400"> / {total}</span>
       </p>
 
       {wrong.length > 0 ? (
@@ -21,10 +21,10 @@ export default function Result({ records, onHome }: Props) {
           <p className="font-bold text-rose-500">間違えた単語</p>
           <ul className="mt-2 divide-y divide-slate-100">
             {wrong.map((r) => (
-              <li key={r.item.id} className="flex items-center justify-between py-2">
-                <span className="text-lg font-semibold">{r.item.word}</span>
-                <span className="text-sm text-slate-500">
-                  正解 第 {r.item.stress} 音節（あなた：{r.chosen}）
+              <li key={r.item.id} className="flex items-center justify-between gap-2 py-2">
+                <span className="text-lg font-semibold">{labelWithPos(r.item)}</span>
+                <span className="shrink-0 text-sm text-slate-500">
+                  第 {r.item.stress} 音節{r.chosen !== undefined && `（あなた：${r.chosen}）`}
                 </span>
               </li>
             ))}
