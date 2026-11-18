@@ -74,13 +74,13 @@ export default function SentenceCheck({ items }: { items: Item[] }) {
   return (
     <div className="pt-6 pb-40">
       <h1 className="text-xl font-bold">例文の読み上げチェック</h1>
-      <p className="mt-1 text-sm text-slate-500">
+      <p className="mt-1 text-sm text-sub">
         {sItems.length} 文。下線の語の強勢が正しく読まれているか聞いて、違うものに NG をつける。
       </p>
       {canSpeak ? (
-        <p className="mt-1 text-xs text-slate-400">音声：{voiceName() ?? '（端末の標準）'}</p>
+        <p className="mt-1 text-xs text-sub">音声：{voiceName() ?? '（端末の標準）'}</p>
       ) : (
-        <p className="mt-2 text-sm font-semibold text-rose-500">このブラウザでは読み上げが使えません。</p>
+        <p className="mt-2 text-sm font-semibold text-wrong">このブラウザでは読み上げが使えません。</p>
       )}
 
       <ul className="mt-4 space-y-2">
@@ -92,16 +92,16 @@ export default function SentenceCheck({ items }: { items: Item[] }) {
               ref={(el) => {
                 rows.current[i] = el
               }}
-              className={`rounded-2xl p-3 shadow-sm transition ${
-                playing === i ? 'bg-indigo-50 ring-2 ring-indigo-400' : isNg ? 'bg-rose-50' : 'bg-white/90'
+              className={`rounded-lg border-[3px] border-ink p-3 transition ${
+                playing === i ? 'bg-tile ring-2 ring-primary' : isNg ? 'bg-wrong/10' : 'bg-white'
               }`}
             >
-              <div className="flex items-center justify-between gap-2 text-xs text-slate-500">
+              <div className="flex items-center justify-between gap-2 text-xs text-sub">
                 <span>
-                  <span className="font-bold text-slate-700">{it.word}</span>（{POS_LABEL[it.pos ?? ''] ?? it.pos}）
-                  正しくは <span className="font-bold text-indigo-600">第 {it.stress} 音節</span>
+                  <span className="font-bold text-ink">{it.word}</span>（{POS_LABEL[it.pos ?? ''] ?? it.pos}）
+                  正しくは <span className="font-bold text-primary">第 {it.stress} 音節</span>
                 </span>
-                <span className="text-slate-400">{i + 1}</span>
+                <span className="text-sub">{i + 1}</span>
               </div>
               <p className="mt-1.5 text-lg leading-loose">
                 <Sentence item={it} />
@@ -112,13 +112,13 @@ export default function SentenceCheck({ items }: { items: Item[] }) {
                     stopAll()
                     speak(it.sentence!)
                   }}
-                  className="rounded-full bg-indigo-50 px-3 py-1.5 text-sm font-semibold text-indigo-600 active:bg-indigo-100"
+                  className="rounded-full bg-tile px-3 py-1.5 text-sm font-semibold text-primary active:brightness-95"
                 >
                   🔊 再生
                 </button>
                 <button
                   onClick={() => startAll(i)}
-                  className="rounded-full bg-white px-3 py-1.5 text-sm text-slate-500 shadow-sm active:bg-slate-50"
+                  className="rounded-full border-2 border-ink bg-white px-3 py-1.5 text-sm text-sub active:bg-tile"
                 >
                   ここから続けて
                 </button>
@@ -126,7 +126,7 @@ export default function SentenceCheck({ items }: { items: Item[] }) {
                   onClick={() => toggleNg(it.id)}
                   aria-pressed={isNg}
                   className={`ml-auto rounded-full px-4 py-1.5 text-sm font-bold ${
-                    isNg ? 'bg-rose-500 text-white' : 'bg-white text-slate-400 shadow-sm'
+                    isNg ? 'border-2 border-ink bg-wrong text-white' : 'border-2 border-ink bg-white text-sub'
                   }`}
                 >
                   NG
@@ -138,15 +138,15 @@ export default function SentenceCheck({ items }: { items: Item[] }) {
       </ul>
 
       {/* 下部：連続再生と NG 一覧 */}
-      <div className="fixed inset-x-0 bottom-0 z-10 border-t border-white/60 bg-white/90 pb-[env(safe-area-inset-bottom)] backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 z-10 border-t-[3px] border-ink bg-white pb-[env(safe-area-inset-bottom)]">
         <div className="mx-auto max-w-[480px] px-4 py-3">
           <div className="flex items-center gap-2">
             {playing === null ? (
-              <button onClick={() => startAll(0)} className="h-11 flex-1 rounded-2xl bg-indigo-500 font-bold text-white">
+              <button onClick={() => startAll(0)} className="h-11 flex-1 rounded-lg border-[3px] border-ink bg-primary font-bold text-white">
                 ▶ 最初から順番に再生
               </button>
             ) : (
-              <button onClick={stopAll} className="h-11 flex-1 rounded-2xl bg-slate-700 font-bold text-white">
+              <button onClick={stopAll} className="h-11 flex-1 rounded-lg border-[3px] border-ink bg-ink font-bold text-white">
                 ■ 停止（{playing + 1} / {sItems.length}）
               </button>
             )}
@@ -161,13 +161,13 @@ export default function SentenceCheck({ items }: { items: Item[] }) {
                   /* コピーできないときは下の一覧を長押しで */
                 }
               }}
-              className="h-11 rounded-2xl bg-rose-500 px-4 font-bold text-white disabled:bg-slate-200 disabled:text-slate-400"
+              className="h-11 rounded-lg border-[3px] border-ink bg-wrong px-4 font-bold text-white disabled:bg-tile disabled:text-sub"
             >
               {copied ? 'コピーしました' : `NG ${ngList.length} 件をコピー`}
             </button>
           </div>
           {ngList.length > 0 && (
-            <pre className="mt-2 max-h-20 overflow-auto rounded-lg bg-slate-50 p-2 text-[11px] whitespace-pre-wrap text-slate-600 select-all">
+            <pre className="mt-2 max-h-20 overflow-auto rounded-lg bg-tile p-2 text-[11px] whitespace-pre-wrap text-sub select-all">
               {ngText}
             </pre>
           )}

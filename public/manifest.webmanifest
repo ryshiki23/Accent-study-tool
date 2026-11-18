@@ -3,8 +3,8 @@
   "short_name": "アクセント",
   "lang": "ja",
   "display": "standalone",
-  "background_color": "#fdf2f8",
-  "theme_color": "#eef2ff",
+  "background_color": "#2E2A4F",
+  "theme_color": "#2E2A4F",
   "icons": [
     {
       "src": "/icon-192.png",

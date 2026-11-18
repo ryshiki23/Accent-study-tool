@@ -1,14 +1,50 @@
 @import "tailwindcss";
 
+/*
+ * 配色（Neko Seaside）。時間帯（朝・昼・夕）ごとの値は App が THEMES から CSS 変数に入れる。
+ * ここの値は読み込み前の初期値（夕）。Tailwind では text-ink / bg-primary / border-ink などで使う。
+ */
+:root {
+  --ink: #2E2A4F;
+  --sub: #66648A;
+  --primary: #5466C0;
+  --accent: #F08A5D;
+  --accent-text: #C2582B;
+  --tile: #EEEAFB;
+  --correct: #2A9A68;
+  --wrong: #DE4459;
+  --sky0: #BCA9E3;
+  --ground: #2E2A4F;
+  --quiz-bg: linear-gradient(160deg, #FDE4EC, #E6DDF6, #CFDBF4);
+  --dot: #C9C3D6;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-sub: var(--sub);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-tile: var(--tile);
+  --color-correct: var(--correct);
+  --color-wrong: var(--wrong);
+  --color-dot: var(--dot);
+  --font-pixel: 'DotGothic16', 'Zen Maru Gothic', sans-serif;
+  --font-sans: 'Zen Maru Gothic', "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
 html, body, #root { min-height: 100%; }
 body {
   margin: 0;
-  background: linear-gradient(160deg, #fdf2f8 0%, #eef2ff 50%, #ecfeff 100%);
+  background: var(--quiz-bg);
   background-attachment: fixed;
-  color: #1e293b;
-  font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 500;
   -webkit-tap-highlight-color: transparent;
 }
+
+.pixelated { image-rendering: pixelated; }
 
 /* 形象のジャンプ（正解時） */
 @keyframes hop {

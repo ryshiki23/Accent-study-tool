@@ -4,11 +4,11 @@ import type { Item } from '../types'
 export default function Sentence({ item }: { item: Item }) {
   const sentence = item.sentence ?? item.word
   const m = new RegExp(`\\b${item.word}\\b`, 'i').exec(sentence)
-  if (!m) return <span className="underline decoration-indigo-400 decoration-4 underline-offset-8">{item.word}</span>
+  if (!m) return <span className="underline decoration-primary decoration-[3px] underline-offset-[6px]">{item.word}</span>
   return (
     <>
       {sentence.slice(0, m.index)}
-      <span className="font-bold underline decoration-indigo-400 decoration-4 underline-offset-8">{m[0]}</span>
+      <span className="font-bold underline decoration-primary decoration-[3px] underline-offset-[6px]">{m[0]}</span>
       {sentence.slice(m.index + m[0].length)}
     </>
   )

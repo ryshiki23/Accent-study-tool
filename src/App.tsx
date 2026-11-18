@@ -3,6 +3,7 @@ import type { Item, ProgressRow, SetSummary } from './types'
 import { buildLearnSet, singleQuestion, type Question } from './questions'
 import { dbConfigured, getState, onUnsavedChange, reportItem, saveAnswer } from './db'
 import { levelOf } from './level'
+import { useTimeOfDay } from './theme'
 import { readUserId } from './userId'
 import { studyToday } from './date'
 import { dueRows, learnOutcome, reviewOutcome } from './srs'
@@ -39,6 +40,8 @@ export default function App() {
   const [progress, setProgress] = useState<Map<string, ProgressRow>>(new Map())
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
   const [unsaved, setUnsaved] = useState(false)
+  // 時間帯（朝・昼・夕）。配色とホームの海辺が切り替わる
+  const time = useTimeOfDay()
   // 日ごとの解答数（分析画面の棒グラフ用）
   const [studyDays, setStudyDays] = useState<Map<string, number>>(new Map())
 
@@ -120,13 +123,13 @@ export default function App() {
   }, [progress])
 
   if (checkMode) {
-    return <Shell>{load.state === 'ready' ? <SentenceCheck items={load.items} /> : <p className="mt-24 text-center text-slate-500">読み込み中…</p>}</Shell>
+    return <Shell>{load.state === 'ready' ? <SentenceCheck items={load.items} /> : <p className="mt-24 text-center text-sub">読み込み中…</p>}</Shell>
   }
   if (!userId) {
     return (
       <Shell>
         <p className="mt-24 text-center text-lg font-bold">リンクが正しくありません</p>
-        <p className="mt-2 text-center text-sm text-slate-500">送られてきたリンクをもう一度開いてください。</p>
+        <p className="mt-2 text-center text-sm text-sub">送られてきたリンクをもう一度開いてください。</p>
       </Shell>
     )
   }
@@ -136,7 +139,7 @@ export default function App() {
         <p className="mt-24 text-center">{load.message}</p>
         <button
           onClick={() => window.location.reload()}
-          className="mx-auto mt-4 rounded-2xl bg-indigo-500 px-6 py-3 font-bold text-white"
+          className="mx-auto mt-4 rounded-lg border-[3px] border-ink bg-primary px-6 py-3 font-bold text-white shadow-[0_4px_0_var(--ink)]"
         >
           再読み込み
         </button>
@@ -144,7 +147,7 @@ export default function App() {
     )
   }
   if (load.state === 'loading') {
-    return <Shell><p className="mt-24 text-center text-slate-500">読み込み中…</p></Shell>
+    return <Shell><p className="mt-24 text-center text-sub">読み込み中…</p></Shell>
   }
 
   function start(mode: Mode) {
@@ -188,14 +191,15 @@ export default function App() {
   const stats = tagStats(load.items, progress)
 
   return (
-    <Shell padBottom={isTab}>
+    <>
       {unsaved && (
-        <div className="fixed inset-x-0 top-0 z-10 mx-auto w-fit rounded-b-xl bg-amber-100 px-4 py-1 text-xs font-semibold text-amber-700 shadow">
+        <div className="fixed inset-x-0 top-[env(safe-area-inset-top)] z-30 mx-auto w-fit rounded-b-lg border-2 border-t-0 border-ink bg-accent px-4 py-1 text-xs font-bold text-ink">
           未保存（自動で再送信中…）
         </div>
       )}
-      {screen.name === 'home' && (
+      {screen.name === 'home' ? (
         <Home
+          time={time}
           learnCount={learnPool.length}
           reviewCount={reviewPool.length}
           masteredCount={counts.mastered}
@@ -204,7 +208,8 @@ export default function App() {
           onLearn={() => start('learn')}
           onReview={() => start('review')}
         />
-      )}
+      ) : (
+        <Shell padBottom={isTab}>
       {screen.name === 'quiz' && (
         <Quiz
           key={screen.key}
@@ -229,17 +234,27 @@ export default function App() {
           days={lastDays(studyDays, today)}
         />
       )}
-      {isTab && <NavBar tab={screen.name as Tab} onChange={(t) => setScreen({ name: t })} />}
       {screen.name === 'result' && (
         <Result summary={screen.summary} levelUp={screen.levelUp} onHome={() => setScreen({ name: 'home' })} />
       )}
-    </Shell>
+        </Shell>
+      )}
+      {isTab && (
+        <NavBar
+          tab={screen.name as Tab}
+          variant={screen.name === 'home' ? 'scene' : 'plain'}
+          onChange={(t) => setScreen({ name: t })}
+        />
+      )}
+    </>
   )
 }
 
 function Shell({ children, padBottom = false }: { children: React.ReactNode; padBottom?: boolean }) {
   return (
-    <div className={`mx-auto flex min-h-dvh max-w-[480px] flex-col px-4 ${padBottom ? 'pb-24' : 'pb-6'}`}>
+    <div
+      className={`mx-auto flex min-h-dvh max-w-[480px] flex-col px-4 pt-[env(safe-area-inset-top)] ${padBottom ? 'pb-28' : 'pb-6'}`}
+    >
       {children}
     </div>
   )

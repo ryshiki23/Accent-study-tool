@@ -35,10 +35,10 @@ export default function Notebook({ rows, today }: Props) {
   return (
     <div className="pt-8">
       <h1 className="text-2xl font-bold">間違いノート</h1>
-      <p className="mt-1 text-sm text-slate-500">復習中の単語 {rows.length} 語</p>
+      <p className="mt-1 text-sm text-sub">復習中の単語 {rows.length} 語</p>
 
       {rows.length === 0 ? (
-        <p className="mt-16 text-center text-slate-500">まだ間違えた単語はありません。</p>
+        <p className="mt-16 text-center text-sub">まだ間違えた単語はありません。</p>
       ) : (
         <>
           <div className="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1">
@@ -50,13 +50,13 @@ export default function Notebook({ rows, today }: Props) {
             ))}
           </div>
 
-          <ul className="mt-3 divide-y divide-slate-100 rounded-2xl bg-white/90 px-4 shadow-sm">
+          <ul className="mt-3 divide-y divide-tile rounded-lg border-[3px] border-ink bg-white px-4">
             {shown.map(({ item, row }) => (
               <li key={item.id} className="flex items-center justify-between gap-3 py-3">
                 <StressedWord item={item} className="text-lg" />
-                <div className="shrink-0 text-right text-xs text-slate-500">
+                <div className="shrink-0 text-right text-xs text-sub">
                   <p>
-                    次回 <span className="font-semibold text-slate-700">{dueLabel(row.due_date, today)}</span>
+                    次回 <span className="font-semibold text-ink">{dueLabel(row.due_date, today)}</span>
                   </p>
                   <p>間違い {row.wrong_count} 回</p>
                 </div>
@@ -74,7 +74,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
     <button
       onClick={onClick}
       className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-semibold whitespace-nowrap ${
-        active ? 'bg-indigo-500 text-white' : 'bg-white/80 text-slate-600'
+        active ? 'bg-primary text-white' : 'bg-white text-sub border-2 border-ink'
       }`}
     >
       {children}
