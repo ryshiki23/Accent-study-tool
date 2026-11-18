@@ -3,6 +3,7 @@ import type { Item, SetSummary } from '../types'
 import { labelWithPos, POS_LABEL, questionItems, singleQuestion, type Question } from '../questions'
 import { ruleLines } from '../rules'
 import StressedWord from '../components/StressedWord'
+import Sentence from '../components/Sentence'
 import Avatar, { type Mood } from '../components/Avatar'
 import { ReportButton, SpeakButton } from '../components/QuizTools'
 
@@ -262,20 +263,6 @@ function reshuffle(q: Extract<Question, { kind: 'B' }>): Question {
     if (items.some((it, i) => it.id !== q.items[i].id)) break
   }
   return { ...q, items }
-}
-
-/** 例文。対象の語に下線 */
-function Sentence({ item }: { item: Item }) {
-  const sentence = item.sentence ?? item.word
-  const m = new RegExp(`\\b${item.word}\\b`, 'i').exec(sentence)
-  if (!m) return <span className="underline decoration-indigo-400 decoration-4 underline-offset-8">{item.word}</span>
-  return (
-    <>
-      {sentence.slice(0, m.index)}
-      <span className="font-bold underline decoration-indigo-400 decoration-4 underline-offset-8">{m[0]}</span>
-      {sentence.slice(m.index + m[0].length)}
-    </>
-  )
 }
 
 function Verdict({ correct }: { correct: boolean }) {

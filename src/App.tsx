@@ -11,6 +11,7 @@ import Quiz from './screens/Quiz'
 import Result from './screens/Result'
 import Notebook from './screens/Notebook'
 import Analysis from './screens/Analysis'
+import SentenceCheck from './screens/SentenceCheck'
 import NavBar, { type Tab } from './components/NavBar'
 import { lastDays, tagStats, weakestTags } from './stats'
 
@@ -29,6 +30,8 @@ type Load =
   | { state: 'ready'; items: Item[] }
 
 const userId = readUserId()
+/** 開発用：/?check=sentences で例文の読み上げチェック画面（ID 不要） */
+const checkMode = new URLSearchParams(window.location.search).get('check') === 'sentences'
 
 export default function App() {
   const [load, setLoad] = useState<Load>({ state: 'loading' })
@@ -41,8 +44,17 @@ export default function App() {
 
   useEffect(() => onUnsavedChange(setUnsaved), [])
 
+  // 例文チェック画面：題庫だけ読む
   useEffect(() => {
-    if (!userId) return
+    if (!checkMode) return
+    fetch('/data/items.json')
+      .then((r) => r.json() as Promise<Item[]>)
+      .then((items) => setLoad({ state: 'ready', items }))
+      .catch(() => setLoad({ state: 'error', message: '問題データを読み込めませんでした。' }))
+  }, [])
+
+  useEffect(() => {
+    if (checkMode || !userId) return
     if (!dbConfigured) {
       setLoad({ state: 'error', message: 'サーバーの設定がありません。' })
       return
@@ -107,6 +119,9 @@ export default function App() {
     return { mastered, learning }
   }, [progress])
 
+  if (checkMode) {
+    return <Shell>{load.state === 'ready' ? <SentenceCheck items={load.items} /> : <p className="mt-24 text-center text-slate-500">読み込み中…</p>}</Shell>
+  }
   if (!userId) {
     return (
       <Shell>

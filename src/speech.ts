@@ -40,7 +40,8 @@ if (canSpeak) {
   })
 }
 
-export function speak(text: string) {
+/** onEnd：読み終わったとき（連続再生用） */
+export function speak(text: string, onEnd?: () => void) {
   if (!canSpeak) return
   const synth = window.speechSynthesis
   synth.cancel()
@@ -49,5 +50,15 @@ export function speak(text: string) {
   u.rate = 0.9
   const voice = pickVoice()
   if (voice) u.voice = voice
+  if (onEnd) u.onend = () => onEnd()
   synth.speak(u)
+}
+
+export function stopSpeaking() {
+  if (canSpeak) window.speechSynthesis.cancel()
+}
+
+/** 今使っている音声の名前（確認用） */
+export function voiceName(): string | null {
+  return canSpeak ? (pickVoice()?.name ?? null) : null
 }
