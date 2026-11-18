@@ -1,6 +1,6 @@
 # Accent-study-tool
 
-英語アクセント問題の練習 Web アプリ（医学部受験向け）。仕様は [SPEC.md](SPEC.md)。
+英語アクセント問題の練習 Web アプリ。仕様は [SPEC.md](SPEC.md)。
 
 ## 現状
 - ✅ 第 0 步：題庫（`public/data/items.json`、4751 詞条）とレポート（`data/generated/report.md`）
